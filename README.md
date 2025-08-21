@@ -9,7 +9,7 @@
 ### Environment Setup
 ```bash
 cd 133-Plonky2-course-v2/plonky2/plonky2/examples
-cargo run --example fibonacci_course_en
+cargo run --example fibonacci_course
 ```
 
 ### Learning Path
