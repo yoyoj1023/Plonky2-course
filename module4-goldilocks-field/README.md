@@ -1,83 +1,83 @@
-# 模組四：極速之核 - 黃金域與硬體友好
+# Module 4: The Core of Speed - The Goldilocks Field & Hardware-Friendliness
 ## The Core of Speed - The Goldilocks Field & Hardware-Friendliness
 
-**課程目標：** 揭示 Plonky2 高性能的物理基礎。
+**Course Objective:** Reveal the physical foundation of Plonky2's high performance.
 
-**心智模型：** 選擇一個與 CPU 指令集完美契合的計算架構，讓每一次運算都發揮出硬體的全部潛力。
-
----
-
-## 1. 有限體的選擇：數學與工程的完美結合
-
-### 1.1 為什麼體的選擇如此重要？
-
-在零知識證明系統中，**所有運算都在有限體中進行**：
-- 多項式運算
-- 哈希計算  
-- 約束驗證
-- FFT/NTT 變換
-
-**關鍵洞察：** 體運算的效率直接決定整個系統的性能。
-
-### 1.2 常見有限體的性能對比
-
-| 體類型 | 大小 | 硬體友好 | FFT 效率 | 安全性 |
-|--------|------|----------|----------|--------|
-| **質數體 (BN254)** | 254 bits | 低 | 中 | 高 |
-| **二進制體 (F₂ₙ)** | 變動 | 中 | 高 | 中 |
-| **黃金域** | 64 bits | 極高 | 極高 | 高 |
+**Mental Model:** Choose a computational architecture that perfectly matches CPU instruction sets, allowing every operation to unleash the hardware's full potential.
 
 ---
 
-## 2. 黃金域 (Goldilocks Field) 深入解析
+## 1. Finite Field Choice: Perfect Combination of Mathematics and Engineering
 
-### 2.1 數學定義
+### 1.1 Why is Field Choice So Important?
 
-**黃金域 F_p，其中：**
+In zero-knowledge proof systems, **all operations are performed in finite fields**:
+- Polynomial operations
+- Hash computations  
+- Constraint verification
+- FFT/NTT transforms
+
+**Key Insight:** Field operation efficiency directly determines entire system performance.
+
+### 1.2 Performance Comparison of Common Finite Fields
+
+| Field Type | Size | Hardware Friendly | FFT Efficiency | Security |
+|------------|------|-------------------|----------------|----------|
+| **Prime Field (BN254)** | 254 bits | Low | Medium | High |
+| **Binary Field (F₂ₙ)** | Variable | Medium | High | Medium |
+| **Goldilocks Field** | 64 bits | Extremely High | Extremely High | High |
+
+---
+
+## 2. Goldilocks Field Deep Dive
+
+### 2.1 Mathematical Definition
+
+**Goldilocks Field F_p, where:**
 ```
 p = 2^64 - 2^32 + 1 = 18446744069414584321
 ```
 
-**十六進制表示：**
+**Hexadecimal representation:**
 ```
 p = 0xFFFFFFFF00000001
 ```
 
-### 2.2 為什麼稱為「黃金」？
+### 2.2 Why Called "Goldilocks"?
 
-這個質數具有**恰到好處**的特性：
-1. **大小適中**：64 位，與現代 CPU 字長匹配
-2. **結構特殊**：高 2-adicity，FFT 友好
-3. **運算高效**：模運算可以避免昂貴的除法
+This prime has **just right** properties:
+1. **Appropriate size**: 64 bits, matching modern CPU word length
+2. **Special structure**: High 2-adicity, FFT friendly
+3. **Efficient operations**: Modular arithmetic can avoid expensive division
 
-### 2.3 黃金域的特殊結構
+### 2.3 Special Structure of Goldilocks Field
 
-#### A. 高 2-adicity
+#### A. High 2-adicity
 
-**定義：** 一個質數 p 的 2-adicity 是使得 2^k | (p-1) 的最大 k 值。
+**Definition:** The 2-adicity of a prime p is the largest k such that 2^k | (p-1).
 
-**黃金域的 2-adicity：**
+**Goldilocks Field's 2-adicity:**
 ```
 p - 1 = 2^64 - 2^32 = 2^32 × (2^32 - 1)
 ```
 
-因此，黃金域的 2-adicity 是 **32**。
+Therefore, Goldilocks field's 2-adicity is **32**.
 
-**FFT 意義：** 可以在此域上進行最大 2^32 點的 FFT 變換。
+**FFT Significance:** Can perform FFT transforms up to 2^32 points in this field.
 
-#### B. 模運算的硬體友好性
+#### B. Hardware-Friendliness of Modular Arithmetic
 
-**關鍵優勢：** p = 2^64 - 2^32 + 1 的形式使得模運算可以高效實現。
+**Key Advantage:** The form p = 2^64 - 2^32 + 1 enables efficient modular arithmetic implementation.
 
-**快速模運算算法：**
+**Fast Modular Arithmetic Algorithm:**
 ```rust
 fn goldilocks_reduce(x: u128) -> u64 {
     let (lo, hi) = (x as u64, (x >> 64) as u64);
     
-    // 利用 2^64 ≡ 2^32 - 1 (mod p)
+    // Utilize 2^64 ≡ 2^32 - 1 (mod p)
     let sum = lo.wrapping_add(hi.wrapping_mul((1u64 << 32).wrapping_sub(1)));
     
-    // 最多需要一次額外的減法
+    // At most one additional subtraction needed
     if sum >= GOLDILOCKS_MODULUS {
         sum - GOLDILOCKS_MODULUS
     } else {
@@ -88,16 +88,16 @@ fn goldilocks_reduce(x: u128) -> u64 {
 
 ---
 
-## 3. 硬體性能優化
+## 3. Hardware Performance Optimization
 
-### 3.1 CPU 指令集的完美匹配
+### 3.1 Perfect Match with CPU Instruction Sets
 
-#### A. 64位元原生支援
+#### A. Native 64-bit Support
 ```rust
-// 黃金域元素直接映射到 u64
+// Goldilocks field elements directly map to u64
 type GoldilocksElement = u64;
 
-// 加法：一條 CPU 指令
+// Addition: One CPU instruction
 fn add(a: u64, b: u64) -> u64 {
     let sum = a + b;
     if sum >= GOLDILOCKS_MODULUS {
@@ -107,84 +107,84 @@ fn add(a: u64, b: u64) -> u64 {
     }
 }
 
-// 乘法：少量 CPU 指令
+// Multiplication: Few CPU instructions
 fn mul(a: u64, b: u64) -> u64 {
     goldilocks_reduce((a as u128) * (b as u128))
 }
 ```
 
-#### B. SIMD 向量化
+#### B. SIMD Vectorization
 
-**AVX2 示例：**
+**AVX2 Example:**
 ```rust
-// 一次處理 4 個黃金域元素
+// Process 4 Goldilocks field elements at once
 fn add_avx2(a: [u64; 4], b: [u64; 4]) -> [u64; 4] {
     unsafe {
         let va = _mm256_loadu_si256(a.as_ptr() as *const __m256i);
         let vb = _mm256_loadu_si256(b.as_ptr() as *const __m256i);
         let sum = _mm256_add_epi64(va, vb);
         
-        // 向量化的模運算
-        // ... (具體實現)
+        // Vectorized modular arithmetic
+        // ... (specific implementation)
     }
 }
 ```
 
-### 3.2 記憶體效率
+### 3.2 Memory Efficiency
 
-**緊湊表示：**
-- 每個元素：8 bytes (vs BN254 的 32 bytes)
-- 快取友好：更多元素能同時載入 L1 快取
-- 頻寬利用：減少記憶體頻寬需求
+**Compact Representation:**
+- Each element: 8 bytes (vs BN254's 32 bytes)
+- Cache friendly: More elements can fit in L1 cache simultaneously
+- Bandwidth utilization: Reduced memory bandwidth requirements
 
-**實際影響：**
+**Actual Impact:**
 ```
-1M 個元素的記憶體使用：
+Memory usage for 1M elements:
 - BN254: 32 MB
-- 黃金域: 8 MB
+- Goldilocks: 8 MB
 
-快取命中率提升 ~4x
+Cache hit rate improvement ~4x
 ```
 
 ---
 
-## 4. FFT 加速：數論變換的藝術
+## 4. FFT Acceleration: The Art of Number Theoretic Transform
 
-### 4.1 為什麼 FFT 在 ZKP 中如此重要？
+### 4.1 Why is FFT So Important in ZKP?
 
-**多項式運算的核心：**
-- 多項式乘法：O(n²) → O(n log n)
-- 多點求值：O(n²) → O(n log n)  
-- 插值：O(n²) → O(n log n)
+**Core of polynomial operations:**
+- Polynomial multiplication: O(n²) → O(n log n)
+- Multi-point evaluation: O(n²) → O(n log n)  
+- Interpolation: O(n²) → O(n log n)
 
-### 4.2 數論變換 (NTT) 基礎
+### 4.2 Number Theoretic Transform (NTT) Fundamentals
 
-在黃金域中，我們使用 **數論變換 (Number Theoretic Transform)**：
+In Goldilocks field, we use **Number Theoretic Transform (NTT)**:
 
-**原根選擇：**
+**Primitive root selection:**
 ```rust
-// 黃金域的一個 2^32 次單位根
+// A 2^32-th root of unity in Goldilocks field
 const PRIMITIVE_ROOT_OF_UNITY: u64 = 1753635133440165772;
 ```
 
-**NTT 公式：**
+**NTT Formula:**
 ```
 X[k] = Σ(j=0 to N-1) x[j] × ω^(jk)
 
-其中 ω 是 N 次單位根
+where ω is N-th root of unity
 ```
 
-### 4.3 高效 NTT 實現
+### 4.3 Efficient NTT Implementation
 
 ```rust
 fn ntt_goldilocks(coeffs: &mut [u64]) {
     let n = coeffs.len();
     assert!(n.is_power_of_two());
     
-    // 位逆序排列
+    // Bit-reversal permutation
     bit_reverse_permute(coeffs);
     
-    // 蝶形運算
+    // Butterfly operations
     let mut length = 2;
     while length <= n {
         let omega = primitive_root_of_unity(length);
@@ -206,56 +206,56 @@ fn ntt_goldilocks(coeffs: &mut [u64]) {
 }
 ```
 
-### 4.4 性能基準測試
+### 4.4 Performance Benchmarks
 
-**實際測試結果：**
+**Actual test results:**
 ```
-2^20 點 NTT 性能對比：
-- BN254 體: ~150ms
-- 黃金域: ~15ms
-- 加速比: 10x
+2^20 point NTT performance comparison:
+- BN254 field: ~150ms
+- Goldilocks: ~15ms
+- Speedup: 10x
 ```
 
 ---
 
-## 5. 遞迴驗證的性能基礎
+## 5. Performance Foundation for Recursive Verification
 
-### 5.1 為什麼域的選擇影響遞迴？
+### 5.1 Why Does Field Choice Affect Recursion?
 
-**遞迴驗證 = 在電路中模擬 Verifier**
+**Recursive verification = Simulating Verifier in circuits**
 
-**關鍵挑戰：**
-- 體運算必須在約束系統中實現
-- 每個域運算對應多個約束
-- 總約束數決定遞迴電路大小
+**Key challenges:**
+- Field operations must be implemented in constraint systems
+- Each field operation corresponds to multiple constraints
+- Total constraint count determines recursive circuit size
 
-### 5.2 約束數量對比
+### 5.2 Constraint Count Comparison
 
-| 操作 | BN254 約束數 | 黃金域約束數 | 比率 |
-|------|-------------|-------------|------|
-| **加法** | 0 | 0 | 1:1 |
-| **乘法** | 5 | 1 | 5:1 |
-| **模運算** | 複雜 | 簡單 | ~10:1 |
+| Operation | BN254 Constraints | Goldilocks Constraints | Ratio |
+|-----------|-------------------|-------------------------|-------|
+| **Addition** | 0 | 0 | 1:1 |
+| **Multiplication** | 5 | 1 | 5:1 |
+| **Modular Arithmetic** | Complex | Simple | ~10:1 |
 
-### 5.3 遞迴電路大小影響
+### 5.3 Recursive Circuit Size Impact
 
-**實際案例：**
+**Actual case study:**
 ```
-驗證一個 Plonky2 證明的遞迴電路：
-- 使用 BN254: ~2M 約束
-- 使用黃金域: ~200K 約束
-- 減少：10x
+Recursive circuit for verifying one Plonky2 proof:
+- Using BN254: ~2M constraints
+- Using Goldilocks: ~200K constraints
+- Reduction: 10x
 
-證明生成時間：
+Proof generation time:
 - BN254: ~10s
-- 黃金域: ~1s
+- Goldilocks: ~1s
 ```
 
 ---
 
-## 6. 實戰：黃金域運算實現
+## 6. Hands-On: Goldilocks Field Operation Implementation
 
-### 6.1 基礎運算實現
+### 6.1 Basic Operation Implementation
 
 ```rust
 pub struct GoldilocksField;
@@ -303,9 +303,9 @@ impl GoldilocksField {
 }
 ```
 
-### 6.2 性能優化技巧
+### 6.2 Performance Optimization Techniques
 
-#### A. 內聯函數
+#### A. Inline Functions
 ```rust
 #[inline(always)]
 pub fn add_no_canonicalize_trashing_input(a: &mut u64, b: u64) {
@@ -313,7 +313,7 @@ pub fn add_no_canonicalize_trashing_input(a: &mut u64, b: u64) {
 }
 ```
 
-#### B. 批量運算
+#### B. Batch Operations
 ```rust
 pub fn batch_add(a: &[u64], b: &[u64], result: &mut [u64]) {
     assert_eq!(a.len(), b.len());
@@ -327,24 +327,24 @@ pub fn batch_add(a: &[u64], b: &[u64], result: &mut [u64]) {
 
 ---
 
-## 7. 實戰練習
+## 7. Practical Exercises
 
-### 練習 1：模運算驗證
+### Exercise 1: Modular Arithmetic Verification
 
-驗證黃金域模運算的正確性：計算 `(2^63 + 100) mod p`
+Verify Goldilocks field modular arithmetic correctness: calculate `(2^63 + 100) mod p`
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```rust
 fn verify_reduction() {
     let p = 0xFFFFFFFF00000001u64;
     let x = (1u128 << 63) + 100;
     
-    // 標準方法
+    // Standard method
     let standard = (x % (p as u128)) as u64;
     
-    // 快速方法
+    // Fast method
     let fast = GoldilocksField::reduce_u128(x);
     
     assert_eq!(standard, fast);
@@ -354,12 +354,12 @@ fn verify_reduction() {
 
 </details>
 
-### 練習 2：性能測試
+### Exercise 2: Performance Testing
 
-比較黃金域和 64 位整數運算的性能差異。
+Compare performance differences between Goldilocks field and 64-bit integer arithmetic.
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```rust
 use std::time::Instant;
@@ -369,7 +369,7 @@ fn benchmark_arithmetic() {
     let a: Vec<u64> = (0..N as u64).collect();
     let b: Vec<u64> = (N as u64..2*N as u64).collect();
     
-    // 標準整數加法
+    // Standard integer addition
     let start = Instant::now();
     let mut sum1 = 0u64;
     for i in 0..N {
@@ -377,7 +377,7 @@ fn benchmark_arithmetic() {
     }
     let time1 = start.elapsed();
     
-    // 黃金域加法
+    // Goldilocks field addition
     let start = Instant::now();
     let mut sum2 = 0u64;
     for i in 0..N {
@@ -388,38 +388,38 @@ fn benchmark_arithmetic() {
     }
     let time2 = start.elapsed();
     
-    println!("整數加法: {:?}", time1);
-    println!("黃金域加法: {:?}", time2);
-    println!("開銷比例: {:.2}x", time2.as_nanos() as f64 / time1.as_nanos() as f64);
+    println!("Integer addition: {:?}", time1);
+    println!("Goldilocks addition: {:?}", time2);
+    println!("Overhead ratio: {:.2}x", time2.as_nanos() as f64 / time1.as_nanos() as f64);
 }
 ```
 
 </details>
 
-### 練習 3：NTT 實現
+### Exercise 3: NTT Implementation
 
-實現黃金域上的 8 點 NTT。
+Implement 8-point NTT over Goldilocks field.
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```rust
 fn ntt_8_point(coeffs: &mut [u64; 8]) {
-    // 8 次單位根：ω^8 = 1
+    // 8th root of unity: ω^8 = 1
     let omega = primitive_root_of_unity(8);
     
-    // 位逆序：[0,1,2,3,4,5,6,7] -> [0,4,2,6,1,5,3,7]
+    // Bit reversal: [0,1,2,3,4,5,6,7] -> [0,4,2,6,1,5,3,7]
     coeffs.swap(1, 4);
     coeffs.swap(3, 6);
     
-    // 長度 2 的蝶形
+    // Length 2 butterflies
     for start in (0..8).step_by(2) {
         let (u, v) = (coeffs[start], coeffs[start + 1]);
         coeffs[start] = GoldilocksField::add(u, v);
         coeffs[start + 1] = GoldilocksField::sub(u, v);
     }
     
-    // 長度 4 的蝶形
+    // Length 4 butterflies
     let omega_2 = GoldilocksField::pow(omega, 2);
     for start in (0..8).step_by(4) {
         let mut w = 1;
@@ -434,7 +434,7 @@ fn ntt_8_point(coeffs: &mut [u64; 8]) {
         }
     }
     
-    // 長度 8 的蝶形
+    // Length 8 butterflies
     let mut w = 1;
     for j in 0..4 {
         let u = coeffs[j];
@@ -452,31 +452,31 @@ fn ntt_8_point(coeffs: &mut [u64; 8]) {
 
 ---
 
-## 8. 深入思考
+## 8. Deep Thinking
 
-### 思考題 1
-為什麼黃金域的 2-adicity 正好是 32？這與 64 位架構有什麼關係？
+### Thinking Question 1
+Why is Goldilocks field's 2-adicity exactly 32? What relationship does this have with 64-bit architecture?
 
-### 思考題 2
-如果要在移動設備上運行 Plonky2，黃金域的選擇還合適嗎？
+### Thinking Question 2
+If running Plonky2 on mobile devices, would Goldilocks field choice still be appropriate?
 
-### 思考題 3
-量子計算對黃金域的安全性有什麼潛在影響？
-
----
-
-## 9. 下一步預習
-
-在下一個模組中，我們將探索：
-- **高效遞迴**如何實現無限可組合性
-- **Starky** 如何與 Plonky2 協同工作
-- **聚合證明**的實際應用場景
+### Thinking Question 3
+What potential impact does quantum computing have on Goldilocks field security?
 
 ---
 
-**關鍵要點回顧：**
-1. **黃金域的數學結構**完美匹配現代 CPU 架構
-2. **64位元運算**和**高 2-adicity** 帶來極致的計算效率
-3. **硬體友好性**是 Plonky2 高性能的物理基礎
-4. **域的選擇**深刻影響整個系統的性能特徵
-5. **工程與數學的結合**創造了真正實用的零知識證明系統
+## 9. Next Module Preview
+
+In the next module, we will explore:
+- How **efficient recursion** achieves unlimited composability
+- How **Starky** works synergistically with Plonky2
+- Practical application scenarios of **aggregated proofs**
+
+---
+
+**Key Takeaways:**
+1. **Goldilocks field's mathematical structure** perfectly matches modern CPU architecture
+2. **64-bit operations** and **high 2-adicity** bring ultimate computational efficiency
+3. **Hardware-friendliness** is the physical foundation of Plonky2's high performance
+4. **Field choice** profoundly affects entire system performance characteristics
+5. **Combination of engineering and mathematics** creates truly practical zero-knowledge proof systems

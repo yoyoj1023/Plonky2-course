@@ -1,226 +1,226 @@
-# 模組一隨堂測驗：奠基時刻 - Plonky2 的設計起點
+# Module 1 Quiz: Foundation Moment - Plonky2's Design Origins
 
-**測驗時間：** 30 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
+**Quiz Time:** 30 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## 📝 第一部分：選擇題（每題 10 分，共 40 分）
+## 📝 Part 1: Multiple Choice Questions (10 points each, 40 points total)
 
-### 1. PLONK 的通用門約束方程式是什麼？
+### 1. What is PLONK's universal gate constraint equation?
 A. `q_L · w_a + q_R · w_b + q_O · w_c = 0`  
 B. `q_L · w_a + q_R · w_b + q_O · w_c + q_M · w_a · w_b + q_C = 0`  
 C. `w_a + w_b = w_c`  
 D. `q_L · w_a · w_b + q_R · w_c = 0`
 
-### 2. 置換參數（Permutation Arguments）在 PLONK 中的主要作用是什麼？
-A. 加速多項式運算  
-B. 實現複製約束，證明不同位置的值相等  
-C. 減少證明大小  
-D. 提高驗證速度
+### 2. What is the main role of Permutation Arguments in PLONK?
+A. Accelerate polynomial operations  
+B. Implement copy constraints to prove values at different positions are equal  
+C. Reduce proof size  
+D. Improve verification speed
 
-### 3. 相比於 PLONK，Plonky2 的主要設計目標不包括以下哪項？
-A. 完全消除可信設置  
-B. 實現高效遞迴驗證  
-C. 減少證明生成時間到毫秒級  
-D. 支持混合算術化模型
+### 3. Compared to PLONK, which of the following is NOT a main design goal of Plonky2?
+A. Completely eliminate trusted setup  
+B. Achieve efficient recursive verification  
+C. Reduce proof generation time to milliseconds  
+D. Support hybrid arithmetization model
 
-### 4. PLONK 的設計哲學可以最佳描述為：
-A. 執行軌跡為中心  
-B. 電路為中心  
-C. 多項式為中心  
-D. 哈希函數為中心
-
----
-
-## ✍️ 第二部分：簡答題（每題 15 分，共 30 分）
-
-### 5. 解釋 PLONK 中複製約束的數學原理
-請用數學公式說明如果兩個集合 A 和 B 相等，它們的多項式插值如何證明這個相等性。
-
-### 6. 分析 Plonky2 設計的三個主要動機
-請列出並簡要解釋 Plonky2 相對於傳統 PLONK 要解決的三個核心問題。
+### 4. PLONK's design philosophy can best be described as:
+A. Execution trace-centric  
+B. Circuit-centric  
+C. Polynomial-centric  
+D. Hash function-centric
 
 ---
 
-## 🧠 第三部分：應用題（每題 15 分，共 30 分）
+## ✍️ Part 2: Short Answer Questions (15 points each, 30 points total)
 
-### 7. 門約束設計練習
-設計 PLONK 門約束來實現以下計算：`w_c = 3w_a² + 2w_b + 5`
-請給出：
-a) 需要的門數量和類型  
-b) 每個門的參數設置（q_L, q_R, q_O, q_M, q_C）  
-c) 必要的複製約束
+### 5. Explain the mathematical principle of copy constraints in PLONK
+Please use mathematical formulas to explain how polynomial interpolation proves equality when two sets A and B are equal.
 
-### 8. 場景分析題
-一個 zkEVM 項目正在選擇零知識證明後端。項目需求如下：
-- 需要處理大量重複的 EVM 指令執行
-- 對證明大小不是特別敏感
-- 希望完全去信任化
-- 需要支持證明聚合
-
-請分析 PLONK 和 Plonky2 在這個場景下的優劣，並給出推薦選擇和理由。
+### 6. Analyze the three main motivations for Plonky2's design
+Please list and briefly explain the three core problems that Plonky2 aims to solve compared to traditional PLONK.
 
 ---
 
-# 📊 測驗解答
+## 🧠 Part 3: Application Questions (15 points each, 30 points total)
 
-## 第一部分：選擇題解答
+### 7. Gate Constraint Design Exercise
+Design PLONK gate constraints to implement the following computation: `w_c = 3w_a² + 2w_b + 5`
+Please provide:
+a) Number and types of gates needed  
+b) Parameter settings for each gate (q_L, q_R, q_O, q_M, q_C)  
+c) Necessary copy constraints
 
-### 1. 答案：B
-**解釋：** PLONK 的完整通用門約束包含五個項：線性項 q_L·w_a、q_R·w_b、q_O·w_c，乘法項 q_M·w_a·w_b，以及常數項 q_C。這個方程式的靈活性來源於可以通過設置不同的 q 參數來實現各種邏輯門。
+### 8. Scenario Analysis Question
+A zkEVM project is choosing a zero-knowledge proof backend. The project requirements are:
+- Need to process large amounts of repetitive EVM instruction execution
+- Not particularly sensitive to proof size
+- Want complete trustlessness
+- Need to support proof aggregation
 
-### 2. 答案：B  
-**解釋：** 置換參數是 PLONK 的核心創新，用於實現複製約束。它通過數學方法證明電路中不同位置的變數具有相同的值，這對於連接不同門的輸入輸出至關重要。
-
-### 3. 答案：C
-**解釋：** Plonky2 的證明生成時間通常在秒級，而不是毫秒級。毫秒級是驗證時間。Plonky2 的主要目標是透明性（無可信設置）、高效遞迴和混合算術化。
-
-### 4. 答案：B
-**解釋：** PLONK 是「電路為中心」的設計，提供極度靈活的門約束和任意的連接方式，就像自由的電路板。這與 AIR 的「執行軌跡為中心」形成對比。
+Please analyze the pros and cons of PLONK and Plonky2 in this scenario, and provide your recommended choice with reasoning.
 
 ---
 
-## 第二部分：簡答題解答
+# 📊 Quiz Solutions
 
-### 5. 複製約束的數學原理（15分）
+## Part 1: Multiple Choice Answers
 
-**核心原理：** 
-如果兩個多元集合 A = {a₁, a₂, ..., aₙ} 和 B = {b₁, b₂, ..., bₙ} 相等，那麼它們的任何對稱多項式也相等。
+### 1. Answer: B
+**Explanation:** PLONK's complete universal gate constraint includes five terms: linear terms q_L·w_a, q_R·w_b, q_O·w_c, multiplication term q_M·w_a·w_b, and constant term q_C. The flexibility of this equation comes from being able to implement various logic gates by setting different q parameters.
 
-**數學表述：**
+### 2. Answer: B  
+**Explanation:** Permutation arguments are PLONK's core innovation, used to implement copy constraints. They mathematically prove that variables at different positions in the circuit have the same value, which is crucial for connecting inputs and outputs of different gates.
+
+### 3. Answer: C
+**Explanation:** Plonky2's proof generation time is typically in seconds, not milliseconds. Milliseconds is the verification time. Plonky2's main goals are transparency (no trusted setup), efficient recursion, and hybrid arithmetization.
+
+### 4. Answer: B
+**Explanation:** PLONK is "circuit-centric" in design, providing extremely flexible gate constraints and arbitrary connections, like a free circuit board. This contrasts with AIR's "execution trace-centric" approach.
+
+---
+
+## Part 2: Short Answer Solutions
+
+### 5. Mathematical Principle of Copy Constraints (15 points)
+
+**Core Principle:** 
+If two multisets A = {a₁, a₂, ..., aₙ} and B = {b₁, b₂, ..., bₙ} are equal, then any of their symmetric polynomials are also equal.
+
+**Mathematical Expression:**
 ```
-對於任意 β, γ，如果 A = B，則：
+For any β, γ, if A = B, then:
 ∏ᵢ(β·aᵢ + γ) = ∏ᵢ(β·bᵢ + γ)
 ```
 
-**PLONK 中的應用：**
-- 原始位置集合：{w(σ(1)), w(σ(2)), ..., w(σ(n))}
-- 置換後集合：{w(π(1)), w(π(2)), ..., w(π(n))}
-- 通過 Fiat-Shamir 生成隨機挑戰 β, γ
-- 證明兩個多項式乘積相等
+**Application in PLONK:**
+- Original position set: {w(σ(1)), w(σ(2)), ..., w(σ(n))}
+- Permuted set: {w(π(1)), w(π(2)), ..., w(π(n))}
+- Generate random challenges β, γ through Fiat-Shamir
+- Prove equality of two polynomial products
 
-**評分標準：**
-- 正確理解集合相等的多項式性質（5分）
-- 正確寫出數學公式（5分）  
-- 說明在 PLONK 中的具體應用（5分）
+**Scoring Criteria:**
+- Correct understanding of polynomial properties of set equality (5 points)
+- Correct mathematical formula (5 points)  
+- Explanation of specific application in PLONK (5 points)
 
-### 6. Plonky2 的三個設計動機（15分）
+### 6. Three Design Motivations of Plonky2 (15 points)
 
-**1. 消除可信設置（5分）**
-- 問題：KZG 承諾需要「powers of tau」儀式
-- 風險：中心化風險，設置被破壞則整個系統失效
-- 解決：採用 FRI 承諾，完全透明
+**1. Eliminate Trusted Setup (5 points)**
+- Problem: KZG commitments require "powers of tau" ceremony
+- Risk: Centralization risk, if setup is compromised, entire system fails
+- Solution: Adopt FRI commitment, completely transparent
 
-**2. 實現高效遞迴（5分）**  
-- 問題：橢圓曲線配對在電路中實現成本極高（~1M+ 約束）
-- 限制：難以構建遞迴驗證電路
-- 解決：FRI + 黃金域，遞迴驗證約 100K 約束
+**2. Achieve Efficient Recursion (5 points)**  
+- Problem: Elliptic curve pairings extremely expensive to implement in circuits (~1M+ constraints)
+- Limitation: Difficult to build recursive verification circuits
+- Solution: FRI + Goldilocks field, recursive verification ~100K constraints
 
-**3. 支持結構化計算（5分）**
-- 問題：PLONK 對重複、規律計算的靈活性變成負擔
-- 場景：zkEVM、zkVM 等需要大量重複指令
-- 解決：混合模型，用 PLONK 實現 AIR 風格約束
+**3. Support Structured Computation (5 points)**
+- Problem: PLONK's flexibility becomes a burden for repetitive, regular computations
+- Scenario: zkEVM, zkVM requiring large amounts of repetitive instructions
+- Solution: Hybrid model, use PLONK to implement AIR-style constraints
 
-**評分標準：**
-- 每個動機的問題識別和解決方案各 2.5 分
-- 邏輯清晰，表述準確
+**Scoring Criteria:**
+- Problem identification and solution for each motivation: 2.5 points each
+- Clear logic and accurate expression
 
 ---
 
-## 第三部分：應用題解答
+## Part 3: Application Solutions
 
-### 7. 門約束設計練習（15分）
+### 7. Gate Constraint Design Exercise (15 points)
 
-**目標：** `w_c = 3w_a² + 2w_b + 5`
+**Goal:** `w_c = 3w_a² + 2w_b + 5`
 
-**解決方案：**
+**Solution:**
 
-**第一步：分解計算**
-- 需要先計算 `w_a²`
-- 然後計算線性組合
+**Step 1: Decompose Computation**
+- Need to compute `w_a²` first
+- Then compute linear combination
 
-**第二步：門設計**
+**Step 2: Gate Design**
 
-**門 1（乘法門）：** 計算 `w_a² → temp`
+**Gate 1 (Multiplication Gate):** Compute `w_a² → temp`
 ```
 q_L = 0, q_R = 0, q_O = -1, q_M = 1, q_C = 0
-約束：w_a · w_a - temp = 0
+Constraint: w_a · w_a - temp = 0
 ```
 
-**門 2（線性組合門）：** 計算 `3temp + 2w_b + 5 → w_c`
+**Gate 2 (Linear Combination Gate):** Compute `3temp + 2w_b + 5 → w_c`
 ```
 q_L = 3, q_R = 2, q_O = -1, q_M = 0, q_C = 5  
-約束：3·temp + 2·w_b - w_c + 5 = 0
+Constraint: 3·temp + 2·w_b - w_c + 5 = 0
 ```
 
-**第三步：複製約束**
-- 門 1 的輸出 temp 連接到門 2 的第一個輸入
+**Step 3: Copy Constraints**
+- Connect Gate 1's output temp to Gate 2's first input
 
-**評分標準：**
-- 正確識別需要 2 個門（3分）
-- 門 1 參數設置正確（4分）
-- 門 2 參數設置正確（4分）  
-- 複製約束設計正確（4分）
+**Scoring Criteria:**
+- Correctly identify need for 2 gates (3 points)
+- Gate 1 parameter settings correct (4 points)
+- Gate 2 parameter settings correct (4 points)  
+- Copy constraint design correct (4 points)
 
-### 8. 場景分析題（15分）
+### 8. Scenario Analysis Question (15 points)
 
-**場景分析：**
-- 大量重複 EVM 指令執行
-- 對證明大小不敏感
-- 完全去信任化要求
-- 需要證明聚合
+**Scenario Analysis:**
+- Large amounts of repetitive EVM instruction execution
+- Not sensitive to proof size
+- Complete trustlessness requirement
+- Need proof aggregation
 
-**PLONK 分析：**
-優勢：
-- 成熟技術，廣泛使用
-- 極小證明大小（~400B）
+**PLONK Analysis:**
+Advantages:
+- Mature technology, widely used
+- Extremely small proof size (~400B)
 
-劣勢：
-- KZG 需要可信設置（不符合去信任化要求）
-- 遞迴效率低，聚合困難
-- 對重複指令的靈活性過度
+Disadvantages:
+- KZG requires trusted setup (doesn't meet trustlessness requirement)
+- Low recursion efficiency, difficult aggregation
+- Excessive flexibility for repetitive instructions
 
-**Plonky2 分析：**
-優勢：
-- FRI 完全透明，無可信設置 ✓
-- 高效遞迴，聚合能力強 ✓  
-- 混合模型適合重複指令 ✓
-- 證明大小可接受（~45KB）✓
+**Plonky2 Analysis:**
+Advantages:
+- FRI completely transparent, no trusted setup ✓
+- Efficient recursion, strong aggregation capability ✓  
+- Hybrid model suitable for repetitive instructions ✓
+- Acceptable proof size (~45KB) ✓
 
-劣勢：
-- 相對較新的技術
-- 證明大小比 KZG 大
+Disadvantages:
+- Relatively new technology
+- Larger proof size than KZG
 
-**推薦選擇：Plonky2**
+**Recommended Choice: Plonky2**
 
-**理由：**
-1. **滿足關鍵需求**：去信任化是硬性要求，只有 Plonky2 滿足
-2. **技術匹配**：重複指令執行是 Plonky2 混合模型的優勢場景
-3. **聚合能力**：高效遞迴使大規模聚合成為可能
-4. **可接受權衡**：證明大小增加換取完全透明是值得的
+**Reasoning:**
+1. **Meets Key Requirements**: Trustlessness is a hard requirement, only Plonky2 satisfies this
+2. **Technical Match**: Repetitive instruction execution is Plonky2's hybrid model's advantage scenario
+3. **Aggregation Capability**: Efficient recursion makes large-scale aggregation possible
+4. **Acceptable Trade-off**: Increased proof size for complete transparency is worthwhile
 
-**評分標準：**
-- PLONK 優劣分析（4分）
-- Plonky2 優劣分析（4分）
-- 需求匹配分析（4分）
-- 推薦理由邏輯性（3分）
+**Scoring Criteria:**
+- PLONK pros and cons analysis (4 points)
+- Plonky2 pros and cons analysis (4 points)
+- Requirements matching analysis (4 points)
+- Recommendation reasoning logic (3 points)
 
 ---
 
-## 🎯 評分等級
+## 🎯 Grading Scale
 
-- **90-100分：** 優秀 - 深入理解 PLONK 和 Plonky2 的核心概念
-- **80-89分：** 良好 - 很好掌握基本概念，有一定分析能力  
-- **70-79分：** 及格 - 基本理解主要概念
-- **60-69分：** 不及格 - 需要重新學習部分內容
-- **60分以下：** 不及格 - 建議重新完整學習本模組
+- **90-100 points:** Excellent - Deep understanding of PLONK and Plonky2 core concepts
+- **80-89 points:** Good - Good grasp of basic concepts with analytical ability  
+- **70-79 points:** Pass - Basic understanding of main concepts
+- **60-69 points:** Fail - Need to re-learn some content
+- **Below 60 points:** Fail - Recommend complete re-study of this module
 
-## 📚 復習建議
+## 📚 Review Recommendations
 
-如果分數不理想，建議重點復習：
-1. **PLONK 通用門約束的五個組成部分**
-2. **置換參數的數學原理和作用機制**  
-3. **Plonky2 相對於 PLONK 的三大設計目標**
-4. **不同場景下技術選型的權衡考慮**
+If scores are not ideal, focus on reviewing:
+1. **The five components of PLONK's universal gate constraints**
+2. **Mathematical principles and mechanisms of permutation arguments**  
+3. **Plonky2's three major design goals compared to PLONK**
+4. **Trade-off considerations in technology selection for different scenarios**

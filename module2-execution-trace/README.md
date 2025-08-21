@@ -1,29 +1,29 @@
-# 模組二：計算的語言 - 從執行軌跡到多項式約束
+# Module 2: The Language of Computation - From Execution Trace to Polynomial Constraints
 ## The Language of Computation - From Execution Trace to Polynomial Constraints
 
-**課程目標：** 掌握 Plonky2（以及 STARKs）的算術化方式，並深入比較其與標準 PLONK 的不同。
+**Course Objective:** Master Plonky2's (and STARKs') arithmetization approach and deeply compare its differences from standard PLONK.
 
-**心智模型：** 如果標準 PLONK 是用圖形化的方式自由設計電路，那麼 AIR 就像是用 Excel 表格來描述一個逐步執行的計算過程。
+**Mental Model:** If standard PLONK is freely designing circuits graphically, then AIR is like using Excel spreadsheets to describe a step-by-step computational process.
 
 ---
 
-## 1. 執行軌跡 (Execution Trace)
+## 1. Execution Trace
 
-### 1.1 核心概念
+### 1.1 Core Concept
 
-**執行軌跡**將計算過程表示為一個二維表格：
-- **每一行**代表計算的一個時間步驟（狀態）
-- **每一列**代表一個暫存器或變數
+**Execution trace** represents a computational process as a 2D table:
+- **Each row** represents a time step (state) of computation
+- **Each column** represents a register or variable
 
-### 1.2 Fibonacci 範例
+### 1.2 Fibonacci Example
 
-讓我們用 Fibonacci 數列來具體理解：
+Let's use the Fibonacci sequence to understand concretely:
 
 ```
 F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2)
 ```
 
-**執行軌跡表格：**
+**Execution Trace Table:**
 
 | Step | a | b | c |
 |------|---|---|---|
@@ -34,27 +34,27 @@ F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2)
 | 4    | 3 | 5 | 8 |
 | ... | ... | ... | ... |
 
-**含義解釋：**
-- `a`：前前一個 Fibonacci 數
-- `b`：前一個 Fibonacci 數  
-- `c`：當前 Fibonacci 數
-- 每一行都滿足：`c = a + b`
+**Meaning Explanation:**
+- `a`: Previous-previous Fibonacci number
+- `b`: Previous Fibonacci number  
+- `c`: Current Fibonacci number
+- Each row satisfies: `c = a + b`
 
-### 1.3 與傳統電路的對比
+### 1.3 Comparison with Traditional Circuits
 
-**傳統電路思維：**
+**Traditional Circuit Thinking:**
 ```
 [a] ——————————\
               ADD —— [c]
 [b] ——————————/
 ```
 
-**執行軌跡思維：**
+**Execution Trace Thinking:**
 ```
-時間軸上的狀態序列：
-狀態0: {a=0, b=1, c=1}
-狀態1: {a=1, b=1, c=2}  
-狀態2: {a=1, b=2, c=3}
+State sequence on timeline:
+State 0: {a=0, b=1, c=1}
+State 1: {a=1, b=1, c=2}  
+State 2: {a=1, b=2, c=3}
 ...
 ```
 
@@ -62,57 +62,57 @@ F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2)
 
 ## 2. AIR (Algebraic Intermediate Representation)
 
-### 2.1 什麼是 AIR？
+### 2.1 What is AIR?
 
-AIR 是一種**基於執行軌跡的算術化方法**，它用多項式約束來描述：
-1. 每一行內部的關係
-2. 相鄰行之間的關係
-3. 特殊位置（開始/結束）的約束
+AIR is an **execution trace-based arithmetization method** that describes using polynomial constraints:
+1. Relationships within each row
+2. Relationships between adjacent rows
+3. Constraints at special positions (start/end)
 
-### 2.2 多項式約束的類型
+### 2.2 Types of Polynomial Constraints
 
-#### A. 轉移約束 (Transition Constraints)
+#### A. Transition Constraints
 
-**定義**：相鄰兩行之間的關係約束
+**Definition:** Relationship constraints between adjacent rows
 
-**Fibonacci 轉移約束：**
+**Fibonacci Transition Constraints:**
 ```
-// 對於每一行 i (除了最後一行)
-c[i] = a[i] + b[i]           // 內部約束
-a[i+1] = b[i]                // 轉移約束 1  
-b[i+1] = c[i]                // 轉移約束 2
-```
-
-**多項式形式：**
-```
-// 設 row_i = (a[i], b[i], c[i])
-// 設 row_{i+1} = (a[i+1], b[i+1], c[i+1])
-
-約束 1: c[i] - a[i] - b[i] = 0
-約束 2: a[i+1] - b[i] = 0  
-約束 3: b[i+1] - c[i] = 0
+// For each row i (except the last row)
+c[i] = a[i] + b[i]           // Internal constraint
+a[i+1] = b[i]                // Transition constraint 1  
+b[i+1] = c[i]                // Transition constraint 2
 ```
 
-#### B. 邊界約束 (Boundary Constraints)
-
-**定義**：對特定行（通常是第一行或最後一行）的約束
-
-**Fibonacci 邊界約束：**
+**Polynomial Form:**
 ```
-// 初始狀態
+// Let row_i = (a[i], b[i], c[i])
+// Let row_{i+1} = (a[i+1], b[i+1], c[i+1])
+
+Constraint 1: c[i] - a[i] - b[i] = 0
+Constraint 2: a[i+1] - b[i] = 0  
+Constraint 3: b[i+1] - c[i] = 0
+```
+
+#### B. Boundary Constraints
+
+**Definition:** Constraints on specific rows (usually first or last row)
+
+**Fibonacci Boundary Constraints:**
+```
+// Initial state
 a[0] = 0
 b[0] = 1
 
-// 如果要驗證特定結果
+// If verifying specific result
 c[n] = expected_result
 ```
 
-### 2.3 完整的 AIR 定義
+### 2.3 Complete AIR Definition
 
-對於 Fibonacci 序列，完整的 AIR 包含：
+For Fibonacci sequence, complete AIR contains:
 
 ```rust
-// 邊界約束
+// Boundary constraints
 fn boundary_constraints(trace: &Trace) -> Vec<Constraint> {
     vec![
         trace[0][0] - F::ZERO,      // a[0] = 0
@@ -120,7 +120,7 @@ fn boundary_constraints(trace: &Trace) -> Vec<Constraint> {
     ]
 }
 
-// 轉移約束
+// Transition constraints
 fn transition_constraints(current: &[F], next: &[F]) -> Vec<F> {
     let (a_curr, b_curr, c_curr) = (current[0], current[1], current[2]);
     let (a_next, b_next, c_next) = (next[0], next[1], next[2]);
@@ -135,59 +135,59 @@ fn transition_constraints(current: &[F], next: &[F]) -> Vec<F> {
 
 ---
 
-## 3. 算術化的大對比
+## 3. The Great Arithmetization Comparison
 
-### 3.1 設計哲學差異
+### 3.1 Design Philosophy Differences
 
-| 特性 | PLONK | AIR |
-|------|-------|-----|
-| **思維模式** | 電路圖 | 時間序列 |
-| **約束來源** | 門的邏輯關係 | 狀態轉移規則 |
-| **靈活性** | 極高（任意連接） | 中等（結構化） |
-| **適用場景** | 通用計算 | 重複/規律計算 |
+| Feature | PLONK | AIR |
+|---------|-------|-----|
+| **Thinking Mode** | Circuit Graph | Time Series |
+| **Constraint Source** | Gate Logic Relations | State Transition Rules |
+| **Flexibility** | Extremely High (arbitrary connections) | Medium (structured) |
+| **Application Scenarios** | General computation | Repetitive/regular computation |
 
-### 3.2 約束表達方式
+### 3.2 Constraint Expression Methods
 
-#### PLONK 約束示例
+#### PLONK Constraint Example
 ```rust
-// 每個門都是獨立的約束
+// Each gate is an independent constraint
 gate1: q_L·w_a + q_R·w_b + q_O·w_c + q_M·w_a·w_b + q_C = 0
 gate2: q_L·w_d + q_R·w_e + q_O·w_f + q_M·w_d·w_e + q_C = 0
 
-// 通過複製約束連接
+// Connected through copy constraints
 copy_constraint: w_c = w_d
 ```
 
-#### AIR 約束示例  
+#### AIR Constraint Example  
 ```rust
-// 轉移約束直接表達狀態變化
+// Transition constraints directly express state changes
 transition: next_state = f(current_state)
-// 邊界約束定義初始/最終狀態  
+// Boundary constraints define initial/final states  
 boundary: initial_state = init_values
 ```
 
-### 3.3 效率對比
+### 3.3 Efficiency Comparison
 
-| 方面 | PLONK | AIR |
-|------|-------|-----|
-| **設置複雜度** | 高（需設計門和連接） | 低（直接描述狀態轉移） |
-| **約束數量** | 多（每個門一個約束） | 少（每種轉移一個約束） |
-| **重複計算效率** | 低 | 高 |
-| **並行化友好度** | 中等 | 高 |
+| Aspect | PLONK | AIR |
+|--------|-------|-----|
+| **Setup Complexity** | High (need to design gates and connections) | Low (directly describe state transitions) |
+| **Number of Constraints** | Many (one constraint per gate) | Few (one constraint per transition type) |
+| **Repetitive Computation Efficiency** | Low | High |
+| **Parallelization Friendliness** | Medium | High |
 
 ---
 
-## 4. Plonky2 的混合模型
+## 4. Plonky2's Hybrid Model
 
-### 4.1 核心創新：用 PLONK 實現 AIR
+### 4.1 Core Innovation: Implementing AIR with PLONK
 
-Plonky2 的天才之處在於：**使用 PLONK 的底層架構來高效實現 AIR 風格的約束**。
+Plonky2's genius lies in: **Using PLONK's underlying architecture to efficiently implement AIR-style constraints**.
 
-### 4.2 實現策略
+### 4.2 Implementation Strategy
 
-#### A. 狀態表示
+#### A. State Representation
 ```rust
-// 在 Plonky2 中，執行軌跡的每一行對應多個 PLONK 變數
+// In Plonky2, each row of execution trace corresponds to multiple PLONK variables
 struct FibonacciRow {
     a: Target,      // PLONK target
     b: Target,      // PLONK target  
@@ -195,51 +195,51 @@ struct FibonacciRow {
 }
 ```
 
-#### B. 轉移約束實現
+#### B. Transition Constraint Implementation
 ```rust
-// 使用 PLONK 的門來實現 AIR 的轉移約束
+// Using PLONK gates to implement AIR transition constraints
 impl CircuitBuilder {
     fn add_fibonacci_transition(&mut self, 
                                current: &FibonacciRow, 
                                next: &FibonacciRow) {
-        // 內部約束：c = a + b
+        // Internal constraint: c = a + b
         let sum = self.add(current.a, current.b);
         self.connect(sum, current.c);
         
-        // 轉移約束：使用複製約束實現狀態傳遞
+        // Transition constraints: use copy constraints for state passing
         self.connect(current.b, next.a);  // a[i+1] = b[i]
         self.connect(current.c, next.b);  // b[i+1] = c[i]
     }
 }
 ```
 
-#### C. 複製約束的巧妙運用
+#### C. Clever Use of Copy Constraints
 
-**關鍵洞察：** Plonky2 用 PLONK 的複製約束來高效地表達「第 i+1 行的某個值等於第 i 行的某個值」，從而完美地模擬出轉移約束。
+**Key Insight:** Plonky2 uses PLONK's copy constraints to efficiently express "the value in row i+1 equals the value in row i", perfectly simulating transition constraints.
 
 ```rust
-// 傳統 AIR 需要特殊的轉移約束機制
-// Plonky2 將其轉化為 PLONK 的複製約束
+// Traditional AIR needs special transition constraint mechanisms
+// Plonky2 converts it to PLONK copy constraints
 self.connect(trace[i].output, trace[i+1].input);
 ```
 
-### 4.3 混合模型的優勢
+### 4.3 Advantages of Hybrid Model
 
-1. **保持靈活性**：仍可使用 PLONK 的任意門約束
-2. **結構化效率**：對重複計算有 AIR 級別的效率  
-3. **開發友好**：可以混合使用兩種約束風格
-4. **遞迴友好**：複製約束在遞迴驗證中更容易處理
+1. **Maintain Flexibility**: Can still use PLONK's arbitrary gate constraints
+2. **Structured Efficiency**: AIR-level efficiency for repetitive computations  
+3. **Developer Friendly**: Can mix both constraint styles
+4. **Recursion Friendly**: Copy constraints are easier to handle in recursive verification
 
 ---
 
-## 5. 實戰練習
+## 5. Practical Exercises
 
-### 練習 1：設計執行軌跡
+### Exercise 1: Design Execution Trace
 
-為以下計算設計執行軌跡：計算 `x^4`（使用重複平方法）
+Design an execution trace for the following computation: calculate `x^4` (using repeated squaring method)
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```
 | Step | x | result |
@@ -248,24 +248,24 @@ self.connect(trace[i].output, trace[i+1].input);
 | 1    | x | x²     |
 | 2    | x | x⁴     |
 
-轉移約束：
+Transition constraint:
 result[i+1] = result[i] × result[i]
 
-邊界約束：
+Boundary constraint:
 result[0] = x
 ```
 
 </details>
 
-### 練習 2：AIR 約束設計
+### Exercise 2: AIR Constraint Design
 
-為計數器電路設計 AIR：每步將計數器加 1，從 0 計數到 n。
+Design AIR for a counter circuit: increment counter by 1 each step, counting from 0 to n.
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```rust
-// 執行軌跡
+// Execution trace
 | Step | counter |
 |------|---------|
 | 0    | 0       |
@@ -274,22 +274,22 @@ result[0] = x
 | ...  | ...     |
 | n    | n       |
 
-// 轉移約束
+// Transition constraint
 counter[i+1] = counter[i] + 1
 
-// 邊界約束  
+// Boundary constraints  
 counter[0] = 0
 counter[n] = n
 ```
 
 </details>
 
-### 練習 3：混合模型實現
+### Exercise 3: Hybrid Model Implementation
 
-思考如何在 Plonky2 中實現練習 2 的計數器。
+Think about how to implement the counter from Exercise 2 in Plonky2.
 
 <details>
-<summary>解答</summary>
+<summary>Solution</summary>
 
 ```rust
 struct CounterRow {
@@ -304,13 +304,13 @@ impl CircuitBuilder {
     }
     
     fn build_counter_circuit(&mut self, n: usize) -> Target {
-        let mut current = self.zero(); // 初始值 0
+        let mut current = self.zero(); // Initial value 0
         
         for _ in 0..n {
             current = self.add_counter_step(current);
         }
         
-        current // 返回最終值
+        current // Return final value
     }
 }
 ```
@@ -319,31 +319,31 @@ impl CircuitBuilder {
 
 ---
 
-## 6. 深入思考
+## 6. Deep Thinking
 
-### 思考題 1
-為什麼說 AIR 更適合描述虛擬機（VM）的執行過程？
+### Thinking Question 1
+Why is AIR more suitable for describing virtual machine (VM) execution processes?
 
-### 思考題 2
-在什麼情況下，Plonky2 的混合模型會比純 AIR 或純 PLONK 更有優勢？
+### Thinking Question 2
+In what situations would Plonky2's hybrid model have advantages over pure AIR or pure PLONK?
 
-### 思考題 3  
-如果要證明一個排序算法的正確性，你會選擇 PLONK 風格還是 AIR 風格的約束？為什麼？
-
----
-
-## 7. 下一步預習
-
-在下一個模組中，我們將探索：
-- **FRI 承諾方案**如何取代 KZG 實現透明性
-- **承諾-折疊-重複**的數學美學
-- 為什麼 FRI 更適合 Plonky2 的遞迴目標
+### Thinking Question 3  
+If proving the correctness of a sorting algorithm, would you choose PLONK-style or AIR-style constraints? Why?
 
 ---
 
-**關鍵要點回顧：**
-1. **執行軌跡**提供了描述計算的時間序列視角
-2. **AIR** 通過轉移和邊界約束自然地表達結構化計算
-3. **Plonky2 的混合模型**巧妙地用 PLONK 的機制實現 AIR 的效率
-4. 不同的算術化方法適合不同類型的計算任務
-5. 理解這些差異是選擇合適工具的關鍵
+## 7. Next Module Preview
+
+In the next module, we will explore:
+- How **FRI commitment scheme** replaces KZG to achieve transparency
+- The mathematical beauty of **commit-fold-repeat**
+- Why FRI is more suitable for Plonky2's recursion goals
+
+---
+
+**Key Takeaways:**
+1. **Execution trace** provides a time series perspective for describing computation
+2. **AIR** naturally expresses structured computation through transition and boundary constraints
+3. **Plonky2's hybrid model** cleverly uses PLONK mechanisms to achieve AIR efficiency
+4. Different arithmetization methods are suitable for different types of computational tasks
+5. Understanding these differences is key to choosing the right tools

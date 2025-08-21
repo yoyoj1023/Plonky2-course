@@ -1,184 +1,184 @@
-# Plonky2 完整課程概覽
+# Plonky2 Complete Course Overview
 
-## 🎯 課程目標與成果
+## 🎯 Course Objectives & Outcomes
 
-完成本課程後，您將能夠：
+After completing this course, you will be able to:
 
-1. **深度理解** Plonky2 的技術原理和設計哲學
-2. **熟練使用** Plonky2 API 開發零知識證明電路  
-3. **系統比較** 不同 ZKP 系統的優劣和適用場景
-4. **設計實現** 遞迴證明和聚合系統
-5. **把握方向** 零知識證明技術的未來發展趨勢
+1. **Deeply understand** Plonky2's technical principles and design philosophy
+2. **Proficiently use** Plonky2 API to develop zero-knowledge proof circuits  
+3. **Systematically compare** the pros and cons of different ZKP systems and their applicable scenarios
+4. **Design and implement** recursive proofs and aggregation systems
+5. **Grasp the direction** of future development trends in zero-knowledge proof technology
 
-## 📊 課程統計
+## 📊 Course Statistics
 
-- **總模組數：** 7 個核心模組
-- **預計學習時間：** 3-6 週（因背景而異）
-- **實踐項目：** 1 個完整 Fibonacci 證明示例
-- **練習題：** 每模組 3-5 個深入練習
-- **代碼行數：** 約 200 行實踐代碼
-- **理論深度：** 從基礎概念到前沿研究
+- **Total Modules:** 7 core modules
+- **Expected Learning Time:** 3-6 weeks (varies by background)
+- **Practice Projects:** 1 complete Fibonacci proof example
+- **Exercises:** 3-5 in-depth exercises per module
+- **Lines of Code:** Approximately 200 lines of practice code
+- **Theoretical Depth:** From basic concepts to cutting-edge research
 
-## 🏗️ 課程架構圖
+## 🏗️ Course Architecture Diagram
 
 ```
-Plonky2 完整課程
-├── 理論基礎層
-│   ├── 模組一：PLONK 基礎回顧
-│   ├── 模組二：AIR 算術化  
-│   └── 模組三：FRI 承諾方案
-├── 技術實現層
-│   ├── 模組四：黃金域優化
-│   └── 模組五：遞迴與協同
-├── 實踐應用層
-│   ├── 模組六：動手編程
-│   └── 模組七：未來展望
-└── 延伸資源
-    ├── 示例代碼
-    ├── 性能測試
-    └── 社區資源
+Plonky2 Complete Course
+├── Theoretical Foundation Layer
+│   ├── Module 1: PLONK Foundation Review
+│   ├── Module 2: AIR Arithmetization  
+│   └── Module 3: FRI Commitment Scheme
+├── Technical Implementation Layer
+│   ├── Module 4: Goldilocks Field Optimization
+│   └── Module 5: Recursion & Synergy
+├── Practical Application Layer
+│   ├── Module 6: Hands-on Programming
+│   └── Module 7: Future Outlook
+└── Extended Resources
+    ├── Example Code
+    ├── Performance Testing
+    └── Community Resources
 ```
 
-## 📈 學習曲線與難度分級
+## 📈 Learning Curve & Difficulty Levels
 
-### 🟢 入門級 (模組一、二)
-- **前置知識：** 基礎密碼學概念
-- **學習時間：** 3-5 天
-- **難度重點：** 概念理解，無需編程
+### 🟢 Beginner Level (Modules 1, 2)
+- **Prerequisites:** Basic cryptographic concepts
+- **Learning Time:** 3-5 days
+- **Difficulty Focus:** Conceptual understanding, no programming required
 
-### 🟡 中級 (模組三、四、五)  
-- **前置知識：** 多項式、有限體基礎
-- **學習時間：** 1-2 週
-- **難度重點：** 數學原理和系統設計
+### 🟡 Intermediate Level (Modules 3, 4, 5)  
+- **Prerequisites:** Polynomials, finite field basics
+- **Learning Time:** 1-2 weeks
+- **Difficulty Focus:** Mathematical principles and system design
 
-### 🔴 高級 (模組六、七)
-- **前置知識：** Rust 編程、系統架構
-- **學習時間：** 1-2 週  
-- **難度重點：** 實際編程和前沿研究
+### 🔴 Advanced Level (Modules 6, 7)
+- **Prerequisites:** Rust programming, system architecture
+- **Learning Time:** 1-2 weeks  
+- **Difficulty Focus:** Actual programming and cutting-edge research
 
-## 🎓 知識點覆蓋矩陣
+## 🎓 Knowledge Coverage Matrix
 
-| 知識領域 | 模組一 | 模組二 | 模組三 | 模組四 | 模組五 | 模組六 | 模組七 |
+| Knowledge Domain | Module 1 | Module 2 | Module 3 | Module 4 | Module 5 | Module 6 | Module 7 |
 |----------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| 密碼學基礎 | ✅ | ✅ | ✅ | - | - | - | - |
-| 多項式約束 | ✅ | ✅ | - | - | ✅ | ✅ | - |
-| 承諾方案 | ✅ | - | ✅ | - | ✅ | - | ✅ |
-| 有限體理論 | - | - | - | ✅ | - | ✅ | - |
-| 系統設計 | - | ✅ | - | - | ✅ | ✅ | ✅ |
-| 性能優化 | - | - | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 實際編程 | - | - | - | - | - | ✅ | - |
-| 前沿研究 | - | - | - | - | - | - | ✅ |
+| Cryptographic Foundations | ✅ | ✅ | ✅ | - | - | - | - |
+| Polynomial Constraints | ✅ | ✅ | - | - | ✅ | ✅ | - |
+| Commitment Schemes | ✅ | - | ✅ | - | ✅ | - | ✅ |
+| Finite Field Theory | - | - | - | ✅ | - | ✅ | - |
+| System Design | - | ✅ | - | - | ✅ | ✅ | ✅ |
+| Performance Optimization | - | - | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Practical Programming | - | - | - | - | - | ✅ | - |
+| Cutting-edge Research | - | - | - | - | - | - | ✅ |
 
-## 🔬 核心技術深度
+## 🔬 Core Technical Depth
 
-### 算術化理解
-- **PLONK 模型：** 門約束 + 複製約束的靈活組合
-- **AIR 模型：** 執行軌跡 + 轉移約束的結構化表達
-- **混合模型：** Plonky2 如何融合兩者優勢
+### Arithmetization Understanding
+- **PLONK Model:** Flexible combination of gate constraints + copy constraints
+- **AIR Model:** Structured expression of execution traces + transition constraints
+- **Hybrid Model:** How Plonky2 fuses the advantages of both
 
-### 承諾方案比較
-- **KZG：** 小證明 vs 可信設置 vs 遞迴困難
-- **FRI：** 透明性 vs 大證明 vs 遞迴友好
-- **選擇策略：** 如何根據應用需求選擇合適方案
+### Commitment Scheme Comparison
+- **KZG:** Small proofs vs trusted setup vs recursion difficulty
+- **FRI:** Transparency vs large proofs vs recursion-friendly
+- **Selection Strategy:** How to choose appropriate schemes based on application requirements
 
-### 性能優化核心
-- **黃金域：** 64位硬體友好 + 高2-adicity + 快速模運算
-- **遞迴設計：** 如何在電路中高效實現 Verifier
-- **聚合策略：** 樹狀聚合 vs 線性聚合的權衡
+### Performance Optimization Core
+- **Goldilocks Field:** 64-bit hardware-friendly + high 2-adicity + fast modular arithmetic
+- **Recursive Design:** How to efficiently implement Verifier in circuits
+- **Aggregation Strategy:** Trade-offs between tree aggregation vs linear aggregation
 
-## 💡 學習心得與最佳實踐
+## 💡 Learning Insights & Best Practices
 
-### 學習策略建議
+### Learning Strategy Recommendations
 
-#### 第一輪：概念建立 (1 週)
+#### First Round: Concept Building (1 week)
 ```
-Day 1-2: 模組一 - 建立 PLONK 基礎認知
-Day 3-4: 模組二 - 理解 AIR 思維模式  
-Day 5-7: 模組三 - 掌握 FRI 核心價值
-```
-
-#### 第二輪：技術深入 (1-2 週)
-```
-Week 1: 模組四、五 - 理解性能和系統設計
-Week 2: 深入練習，鞏固理論知識
+Day 1-2: Module 1 - Build PLONK foundation understanding
+Day 3-4: Module 2 - Understand AIR thinking pattern  
+Day 5-7: Module 3 - Master FRI core value
 ```
 
-#### 第三輪：實踐應用 (1-2 週)
+#### Second Round: Technical Deep Dive (1-2 weeks)
 ```
-Week 1: 模組六 - 動手編程，建立實感
-Week 2: 模組七 - 把握趨勢，規劃未來
+Week 1: Modules 4, 5 - Understand performance and system design
+Week 2: In-depth practice, consolidate theoretical knowledge
 ```
 
-### 常見學習障礙與解決方案
+#### Third Round: Practical Application (1-2 weeks)
+```
+Week 1: Module 6 - Hands-on programming, build practical intuition
+Week 2: Module 7 - Grasp trends, plan for the future
+```
 
-#### 數學概念抽象
-**問題：** 多項式約束、有限體運算難以理解
-**解決：** 多看具體例子，先理解直觀含義再深入數學
+### Common Learning Obstacles & Solutions
 
-#### 系統設計複雜
-**問題：** 遞迴、聚合等系統概念錯綜複雜
-**解決：** 畫圖解析，從簡單場景逐步擴展
+#### Abstract Mathematical Concepts
+**Problem:** Polynomial constraints, finite field operations are difficult to understand
+**Solution:** Look at more concrete examples, understand intuitive meaning before diving into mathematics
 
-#### 代碼實踐困難  
-**問題：** Rust 語法、API 使用不熟悉
-**解決：** 先運行示例，再逐步修改和擴展
+#### Complex System Design
+**Problem:** Recursive, aggregation and other system concepts are intricate
+**Solution:** Draw diagrams for analysis, gradually expand from simple scenarios
 
-## 🚀 課程後續發展路徑
+#### Practical Programming Difficulties  
+**Problem:** Unfamiliar with Rust syntax, API usage
+**Solution:** Run examples first, then gradually modify and extend
 
-### 技術深化路線
-1. **專業化發展**
-   - 深入某個特定領域（如 zkEVM、隱私計算）
-   - 成為某個技術方向的專家
+## 🚀 Post-Course Development Paths
 
-2. **系統化應用**  
-   - 構建實際的商業級應用
-   - 解決真實世界的隱私保護問題
+### Technical Deepening Routes
+1. **Specialized Development**
+   - Deep dive into specific areas (like zkEVM, privacy computing)
+   - Become an expert in a particular technical direction
 
-3. **研究創新**
-   - 參與前沿技術研究
-   - 為 ZKP 生態貢獻新的想法和實現
+2. **Systematic Application**  
+   - Build actual commercial-grade applications
+   - Solve real-world privacy protection problems
 
-### 職業發展方向
-- **ZKP 協議工程師**：設計和實現零知識證明協議
-- **區塊鏈架構師**：構建基於 ZKP 的擴容和隱私方案  
-- **密碼學研究員**：推動 ZKP 理論和實踐發展
-- **產品技術負責人**：將 ZKP 技術商業化落地
+3. **Research Innovation**
+   - Participate in cutting-edge technology research
+   - Contribute new ideas and implementations to the ZKP ecosystem
 
-## 📚 推薦延伸學習
+### Career Development Directions
+- **ZKP Protocol Engineer**: Design and implement zero-knowledge proof protocols
+- **Blockchain Architect**: Build ZKP-based scaling and privacy solutions  
+- **Cryptography Researcher**: Advance ZKP theory and practice development
+- **Product Technology Lead**: Commercialize ZKP technology
 
-### 必讀論文
-1. **PLONK 原論文** - 理解核心 PLONK 協議
-2. **FRI 論文** - 深入 FRI 承諾方案
-3. **Plonky2 技術報告** - 官方設計文檔
+## 📚 Recommended Extended Learning
 
-### 相關技術  
-1. **其他 ZKP 系統** - Circom, Halo2, Nova
-2. **密碼學基礎** - 橢圓曲線、配對、哈希函數
-3. **系統設計** - 分散式系統、區塊鏈架構
+### Must-Read Papers
+1. **PLONK Original Paper** - Understand core PLONK protocol
+2. **FRI Paper** - Deep dive into FRI commitment scheme
+3. **Plonky2 Technical Report** - Official design documentation
 
-### 實踐項目
-1. **擴展 Fibonacci 示例** - 添加更多功能和優化
-2. **構建小型 zkVM** - 實現簡單的虛擬機證明
-3. **隱私保護應用** - 構建實際的隱私計算方案
+### Related Technologies  
+1. **Other ZKP Systems** - Circom, Halo2, Nova
+2. **Cryptographic Foundations** - Elliptic curves, pairings, hash functions
+3. **System Design** - Distributed systems, blockchain architecture
+
+### Practice Projects
+1. **Extend Fibonacci Example** - Add more features and optimizations
+2. **Build Small zkVM** - Implement simple virtual machine proofs
+3. **Privacy-Preserving Applications** - Build actual privacy computing solutions
 
 ---
 
-## 🎉 課程總結
+## 🎉 Course Summary
 
-這套 Plonky2 完整課程設計精心平衡了理論深度與實踐廣度，從 PLONK 基礎到 Plonky3 前沿，從數學原理到工程實現，從單一概念到系統設計。
+This Plonky2 complete course is carefully designed to balance theoretical depth with practical breadth, from PLONK foundations to Plonky3 cutting-edge, from mathematical principles to engineering implementation, from single concepts to system design.
 
-**學習收穫：**
-- 深度掌握當前最先進的零知識證明技術
-- 建立系統性的 ZKP 知識體系  
-- 獲得實際的編程和系統設計能力
-- 為未來技術發展做好充分準備
+**Learning Achievements:**
+- Deep mastery of current most advanced zero-knowledge proof technology
+- Build systematic ZKP knowledge system  
+- Gain actual programming and system design capabilities
+- Be well-prepared for future technology development
 
-**技術價值：**
-- Plonky2 代表當前 ZKP 技術的最高水準
-- 掌握 Plonky2 就掌握了整個 ZKP 領域的核心
-- 這些知識將在未來 5-10 年保持前沿價值
+**Technical Value:**
+- Plonky2 represents the highest level of current ZKP technology
+- Mastering Plonky2 means mastering the core of the entire ZKP field
+- This knowledge will maintain cutting-edge value for the next 5-10 years
 
-**未來展望：**
-零知識證明正從學術研究走向大規模產業應用。掌握了這套完整知識體系，您已經站在了這個激動人心的技術前沿，準備好為構建更加私密、安全、高效的數位世界貢獻力量！
+**Future Outlook:**
+Zero-knowledge proofs are transitioning from academic research to large-scale industrial applications. Having mastered this complete knowledge system, you are now standing at the forefront of this exciting technology, ready to contribute to building a more private, secure, and efficient digital world!
 
-**開始您的 ZKP 之旅吧！** 🚀✨
+**Begin your ZKP journey!** 🚀✨

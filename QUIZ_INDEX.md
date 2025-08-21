@@ -1,190 +1,190 @@
-# 📝 Plonky2 課程測驗總覽
+# 📝 Plonky2 Course Quiz Overview
 
-完整的隨堂測驗系統，幫助您檢驗學習成果並鞏固知識點。
-
----
-
-## 🎯 測驗體系設計
-
-### 📊 測驗統計
-- **總測驗數量：** 7 份完整測驗
-- **總題目數量：** 約 70 道題目
-- **總測驗時間：** 275 分鐘
-- **涵蓋知識點：** 從基礎概念到前沿研究
-
-### 🏆 評分標準
-- **90-100分：** 優秀 - 深入理解，能夠靈活應用
-- **80-89分：** 良好 - 很好掌握，能夠分析問題
-- **70-79分：** 及格 - 基本理解主要概念
-- **60-69分：** 不及格 - 需要重新學習部分內容
-- **60分以下：** 不及格 - 建議重新完整學習
+Complete quiz system to help you verify learning outcomes and consolidate knowledge points.
 
 ---
 
-## 📚 各模組測驗詳情
+## 🎯 Quiz System Design
 
-### [模組一測驗：奠基時刻](./module1-design-origins/QUIZ.md)
-- **測驗時間：** 30 分鐘
-- **主要內容：** PLONK 基礎、置換參數、Plonky2 設計動機
-- **重點考查：** 概念理解、設計分析、場景應用
-- **難度等級：** 🟢 入門級
+### 📊 Quiz Statistics
+- **Total Quizzes:** 7 complete quizzes
+- **Total Questions:** Approximately 70 questions
+- **Total Quiz Time:** 275 minutes
+- **Knowledge Coverage:** From basic concepts to cutting-edge research
 
-**核心知識點：**
-- PLONK 通用門約束方程式
-- 置換參數的數學原理
-- Plonky2 的三大設計目標
-- 技術選型的權衡考慮
-
-### [模組二測驗：計算的語言](./module2-execution-trace/QUIZ.md)
-- **測驗時間：** 35 分鐘
-- **主要內容：** 執行軌跡、AIR 算術化、混合模型
-- **重點考查：** 概念區別、軌跡設計、模型比較
-- **難度等級：** 🟡 中級
-
-**核心知識點：**
-- 執行軌跡的二維表格結構
-- AIR 的轉移約束和邊界約束
-- PLONK vs AIR 的思維差異
-- Plonky2 混合模型的創新
-
-### [模組三測驗：透明之心](./module3-fri-commitment/QUIZ.md)
-- **測驗時間：** 40 分鐘
-- **主要內容：** FRI 原理、性能對比、遞迴優勢
-- **重點考查：** 數學理解、性能分析、場景選擇
-- **難度等級：** 🟡 中級
-
-**核心知識點：**
-- FRI 的承諾-折疊-重複過程
-- 多項式奇偶分解的數學基礎
-- FRI vs KZG 的全面對比
-- 遞迴友好性的技術原理
-
-### [模組四測驗：極速之核](./module4-goldilocks-field/QUIZ.md)
-- **測驗時間：** 40 分鐘
-- **主要內容：** 黃金域特性、硬體優化、FFT 加速
-- **重點考查：** 數學結構、性能分析、計算實踐
-- **難度等級：** 🟡 中級
-
-**核心知識點：**
-- 黃金域的數學定義和結構
-- 2-adicity 對 FFT 的影響
-- 硬體友好性的具體體現
-- NTT 算法和性能提升
-
-### [模組五測驗：終極能力](./module5-recursion-stark/QUIZ.md)
-- **測驗時間：** 45 分鐘
-- **主要內容：** 遞迴證明、STARK 協同、系統設計
-- **重點考查：** 系統理解、架構設計、性能優化
-- **難度等級：** 🔴 高級
-
-**核心知識點：**
-- 遞迴證明的三大核心能力
-- STARKs 與 Plonky2 的協同模式
-- 大規模證明系統的架構設計
-- 聚合策略和性能分析
-
-### [模組六測驗：動手實踐](./module6-hands-on-practice/QUIZ.md)
-- **測驗時間：** 40 分鐘
-- **主要內容：** API 使用、電路設計、性能優化
-- **重點考查：** 編程實踐、電路優化、錯誤調試
-- **難度等級：** 🔴 高級
-
-**核心知識點：**
-- Plonky2 API 的核心組件
-- 電路設計的完整流程
-- 約束優化和性能調優
-- 常見錯誤的識別和修復
-
-### [模組七測驗：未來展望](./module7-plonky3-future/QUIZ.md)
-- **測驗時間：** 40 分鐘
-- **主要內容：** 模組化設計、技術趨勢、系統演進
-- **重點考查：** 前沿理解、趨勢分析、架構設計
-- **難度等級：** 🔴 高級
-
-**核心知識點：**
-- Plonky3 的模組化理念
-- 跨域聚合的技術挑戰
-- 組件選擇的適用場景
-- 未來技術發展趨勢
+### 🏆 Scoring Standards
+- **90-100 points:** Excellent - Deep understanding, able to apply flexibly
+- **80-89 points:** Good - Very good mastery, able to analyze problems
+- **70-79 points:** Pass - Basic understanding of main concepts
+- **60-69 points:** Fail - Need to re-learn some content
+- **Below 60 points:** Fail - Recommend complete re-learning
 
 ---
 
-## 🎓 測驗使用建議
+## 📚 Module Quiz Details
 
-### 📖 學習階段測驗
-**使用時機：** 完成每個模組學習後
-**目的：** 檢驗理解程度，查漏補缺
-**策略：** 
-- 先嘗試獨立完成
-- 對照答案分析錯誤
-- 重點復習薄弱環節
+### [Module 1 Quiz: Foundation Moment](./module1-design-origins/QUIZ.md)
+- **Quiz Time:** 30 minutes
+- **Main Content:** PLONK foundations, permutation arguments, Plonky2 design motivation
+- **Focus Areas:** Concept understanding, design analysis, scenario application
+- **Difficulty Level:** 🟢 Beginner
 
-### 🔄 複習階段測驗
-**使用時機：** 課程學習全部完成後
-**目的：** 全面檢驗學習成果
-**策略：**
-- 限時完成，模擬考試環境
-- 統計各模組得分，發現問題
-- 制定針對性復習計劃
+**Core Knowledge Points:**
+- PLONK universal gate constraint equations
+- Mathematical principles of permutation arguments
+- Three major design goals of Plonky2
+- Trade-off considerations in technology selection
 
-### 🎯 實戰階段測驗
-**使用時機：** 準備應用 Plonky2 開發項目前
-**目的：** 確保具備實際應用能力
-**策略：**
-- 重點關注設計題和應用題
-- 練習系統思考和權衡分析
-- 模擬真實項目場景
+### [Module 2 Quiz: The Language of Computation](./module2-execution-trace/QUIZ.md)
+- **Quiz Time:** 35 minutes
+- **Main Content:** Execution traces, AIR arithmetization, hybrid model
+- **Focus Areas:** Concept differences, trace design, model comparison
+- **Difficulty Level:** 🟡 Intermediate
+
+**Core Knowledge Points:**
+- 2D table structure of execution traces
+- AIR's transition constraints and boundary constraints
+- Thinking differences between PLONK vs AIR
+- Innovation of Plonky2's hybrid model
+
+### [Module 3 Quiz: The Heart of Transparency](./module3-fri-commitment/QUIZ.md)
+- **Quiz Time:** 40 minutes
+- **Main Content:** FRI principles, performance comparison, recursion advantages
+- **Focus Areas:** Mathematical understanding, performance analysis, scenario selection
+- **Difficulty Level:** 🟡 Intermediate
+
+**Core Knowledge Points:**
+- FRI's commit-fold-repeat process
+- Mathematical foundation of polynomial odd-even decomposition
+- Comprehensive comparison of FRI vs KZG
+- Technical principles of recursion-friendliness
+
+### [Module 4 Quiz: The Core of Speed](./module4-goldilocks-field/QUIZ.md)
+- **Quiz Time:** 40 minutes
+- **Main Content:** Goldilocks field properties, hardware optimization, FFT acceleration
+- **Focus Areas:** Mathematical structure, performance analysis, computational practice
+- **Difficulty Level:** 🟡 Intermediate
+
+**Core Knowledge Points:**
+- Mathematical definition and structure of Goldilocks field
+- Impact of 2-adicity on FFT
+- Specific manifestations of hardware-friendliness
+- NTT algorithms and performance improvements
+
+### [Module 5 Quiz: Ultimate Capability](./module5-recursion-stark/QUIZ.md)
+- **Quiz Time:** 45 minutes
+- **Main Content:** Recursive proofs, STARK synergy, system design
+- **Focus Areas:** System understanding, architectural design, performance optimization
+- **Difficulty Level:** 🔴 Advanced
+
+**Core Knowledge Points:**
+- Three core capabilities of recursive proofs
+- Synergistic mode of STARKs and Plonky2
+- Architectural design of large-scale proof systems
+- Aggregation strategies and performance analysis
+
+### [Module 6 Quiz: Hands-On Practice](./module6-hands-on-practice/QUIZ.md)
+- **Quiz Time:** 40 minutes
+- **Main Content:** API usage, circuit design, performance optimization
+- **Focus Areas:** Programming practice, circuit optimization, error debugging
+- **Difficulty Level:** 🔴 Advanced
+
+**Core Knowledge Points:**
+- Core components of Plonky2 API
+- Complete workflow of circuit design
+- Constraint optimization and performance tuning
+- Identification and fixing of common errors
+
+### [Module 7 Quiz: Future Outlook](./module7-plonky3-future/QUIZ.md)
+- **Quiz Time:** 40 minutes
+- **Main Content:** Modular design, technology trends, system evolution
+- **Focus Areas:** Cutting-edge understanding, trend analysis, architectural design
+- **Difficulty Level:** 🔴 Advanced
+
+**Core Knowledge Points:**
+- Plonky3's modular philosophy
+- Technical challenges of cross-domain aggregation
+- Applicable scenarios for component selection
+- Future technology development trends
 
 ---
 
-## 📊 測驗成績分析
+## 🎓 Quiz Usage Recommendations
 
-### 🎯 目標設定
-- **全部測驗平均分 ≥ 85**：準備充分，可以開始實際項目
-- **全部測驗平均分 ≥ 75**：基礎紮實，可以進行深入研究
-- **全部測驗平均分 ≥ 70**：達到及格標準，具備基本能力
+### 📖 Learning Phase Quizzes
+**Usage Timing:** After completing each module's learning
+**Purpose:** Verify understanding level, identify knowledge gaps
+**Strategy:** 
+- Try to complete independently first
+- Compare with answers to analyze errors
+- Focus on reviewing weak areas
 
-### 📈 提升策略
-**如果總體分數偏低：**
-1. **重新學習薄弱模組**：重點關注得分最低的模組
-2. **加強實踐練習**：多做編程練習，提高動手能力
-3. **深入理解原理**：不要滿足於記憶，追求深入理解
+### 🔄 Review Phase Quizzes
+**Usage Timing:** After completing all course learning
+**Purpose:** Comprehensive verification of learning outcomes
+**Strategy:**
+- Complete within time limits, simulate exam environment
+- Count scores for each module, identify problems
+- Develop targeted review plans
 
-**如果某些題型困難：**
-- **選擇題錯誤多**：基礎概念不夠牢固，需要重新學習
-- **簡答題不完整**：理解不夠深入，需要多思考「為什麼」
-- **應用題無從下手**：實踐經驗不足，需要多做練習
-- **設計題邏輯混亂**：系統思維不夠，需要學習架構設計
-
----
-
-## 🚀 進階學習建議
-
-### 🎓 完成所有測驗後的下一步
-
-**90+ 分學習者：**
-- 開始實際項目開發
-- 參與開源社區貢獻
-- 嘗試前沿研究問題
-
-**80-89 分學習者：**
-- 加強實踐經驗
-- 深入學習特定領域
-- 嘗試中等複雜度項目
-
-**70-79 分學習者：**
-- 鞏固基礎知識
-- 完成更多練習
-- 從簡單項目開始
-
-### 📚 延伸學習資源
-- **技術論文**：深入理解理論基礎
-- **開源項目**：學習實際應用案例  
-- **技術會議**：了解最新發展動態
-- **社區討論**：與其他學習者交流經驗
+### 🎯 Application Phase Quizzes
+**Usage Timing:** Before preparing to apply Plonky2 to development projects
+**Purpose:** Ensure practical application capability
+**Strategy:**
+- Focus on design and application questions
+- Practice systematic thinking and trade-off analysis
+- Simulate real project scenarios
 
 ---
 
-**準備好接受挑戰了嗎？從 [模組一測驗](./module1-design-origins/QUIZ.md) 開始，檢驗您的 Plonky2 掌握程度吧！** 🚀
+## 📊 Quiz Score Analysis
 
-記住：測驗不是目的，而是幫助您更好地掌握這項前沿技術的工具。祝您測驗順利！ 🎉
+### 🎯 Goal Setting
+- **All quiz average ≥ 85**: Well prepared, ready to start actual projects
+- **All quiz average ≥ 75**: Solid foundation, ready for in-depth research
+- **All quiz average ≥ 70**: Meets passing standard, has basic capability
+
+### 📈 Improvement Strategies
+**If overall scores are low:**
+1. **Re-learn weak modules**: Focus on modules with lowest scores
+2. **Strengthen practice exercises**: Do more programming exercises, improve hands-on ability
+3. **Deepen understanding of principles**: Don't settle for memorization, pursue deep understanding
+
+**If certain question types are difficult:**
+- **Many multiple choice errors**: Basic concepts not solid enough, need re-learning
+- **Incomplete short answers**: Understanding not deep enough, need to think more about "why"
+- **No idea on application questions**: Insufficient practical experience, need more practice
+- **Confused logic in design questions**: Insufficient systematic thinking, need to learn architectural design
+
+---
+
+## 🚀 Advanced Learning Recommendations
+
+### 🎓 Next Steps After Completing All Quizzes
+
+**90+ point learners:**
+- Start actual project development
+- Participate in open source community contributions
+- Try cutting-edge research problems
+
+**80-89 point learners:**
+- Strengthen practical experience
+- Deep dive into specific fields
+- Try medium-complexity projects
+
+**70-79 point learners:**
+- Consolidate foundational knowledge
+- Complete more exercises
+- Start with simple projects
+
+### 📚 Extended Learning Resources
+- **Technical Papers**: Deepen understanding of theoretical foundations
+- **Open Source Projects**: Learn actual application cases  
+- **Technical Conferences**: Understand latest development trends
+- **Community Discussions**: Exchange experiences with other learners
+
+---
+
+**Ready to take on the challenge? Start with [Module 1 Quiz](./module1-design-origins/QUIZ.md) to test your Plonky2 mastery!** 🚀
+
+Remember: Quizzes are not the goal, but tools to help you better master this cutting-edge technology. Good luck with your quizzes! 🎉

@@ -1,175 +1,175 @@
-# 模組三隨堂測驗：透明之心 - FRI 承諾方案
+# Module 3 Quiz: The Heart of Transparency - FRI Commitment Scheme
 
-**測驗時間：** 40 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
-
----
-
-## 📝 第一部分：選擇題（每題 8 分，共 40 分）
-
-### 1. KZG 承諾方案的主要缺陷是什麼？
-A. 證明大小太大
-B. 驗證時間太長
-C. 需要可信設置（Trusted Setup）
-D. 不支持多項式承諾
-
-### 2. FRI 的核心思想是通過什麼方式來證明多項式的低度性？
-A. 直接計算多項式的所有係數
-B. 承諾-折疊-重複的遞迴過程，逐步降低度數
-C. 比較多項式在多個點的取值
-D. 使用橢圓曲線配對運算
-
-### 3. FRI 折疊操作的數學基礎是什麼？
-A. 多項式的加法性質
-B. 多項式的奇偶分解：P(x) = P_even(x²) + x·P_odd(x²)
-C. 多項式的導數性質
-D. 多項式的積分性質
-
-### 4. 相比 KZG，FRI 在遞迴驗證中的主要優勢是什麼？
-A. 證明更小
-B. 只依賴哈希函數，避免了橢圓曲線配對的複雜性
-C. 生成速度更快
-D. 數學理論更簡單
-
-### 5. Plonky2 中 FRI 的典型安全參數設置能提供多少位安全性？
-A. 128 位
-B. 256 位  
-C. 80 位
-D. 64 位
+**Quiz Time:** 40 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## ✍️ 第二部分：簡答題（每題 12 分，共 36 分）
+## 📝 Part 1: Multiple Choice Questions (8 points each, 40 points total)
 
-### 6. 解釋 FRI 的高層工作原理
-請說明 FRI 如何通過「承諾-折疊-重複」的過程將複雜的低度測試問題轉化為簡單的常數檢查。
+### 1. What is the main flaw of the KZG commitment scheme?
+A. Proof size is too large
+B. Verification time is too long
+C. Requires trusted setup
+D. Does not support polynomial commitments
 
-### 7. 比較 FRI 和 KZG 的性能特徵
-請從以下四個維度進行比較：
-a) 證明大小
-b) 驗證時間  
-c) 可信設置需求
-d) 遞迴友好性
+### 2. What is FRI's core idea for proving polynomial low-degree property?
+A. Directly compute all coefficients of the polynomial
+B. Commit-fold-repeat recursive process, gradually reducing degree
+C. Compare polynomial values at multiple points
+D. Use elliptic curve pairing operations
 
-### 8. 分析為什麼 FRI 更適合 Plonky2 的遞迴目標
-請解釋 FRI 在電路中實現的成本優勢，以及這如何支持高效遞迴。
+### 3. What is the mathematical foundation of FRI folding operation?
+A. Additive properties of polynomials
+B. Odd-even decomposition of polynomials: P(x) = P_even(x²) + x·P_odd(x²)
+C. Derivative properties of polynomials
+D. Integral properties of polynomials
 
----
+### 4. Compared to KZG, what is FRI's main advantage in recursive verification?
+A. Smaller proofs
+B. Only relies on hash functions, avoiding complexity of elliptic curve pairings
+C. Faster generation speed
+D. Simpler mathematical theory
 
-## 🧠 第三部分：計算題（12 分）
-
-### 9. FRI 折疊計算練習
-給定多項式 `P(x) = 2x³ + 3x² + x + 4`，計算一次 FRI 折疊操作：
-a) 將 P(x) 分解為奇偶項
-b) 使用隨機挑戰 α = 7，計算折疊後的多項式
-c) 驗證折疊後多項式的度數
-
----
-
-## 💡 第四部分：分析題（12 分）
-
-### 10. 場景選擇分析
-一個 DeFi 協議需要選擇多項式承諾方案，具體需求如下：
-- 部署在以太坊主網，gas 成本敏感
-- 需要在鏈上驗證證明
-- 用戶對去中心化有強烈需求
-- 未來可能需要 Layer 2 擴容
-
-請分析 FRI 和 KZG 在這個場景下的適用性，並給出推薦。
+### 5. What level of security bits can Plonky2's typical FRI security parameter settings provide?
+A. 128 bits
+B. 256 bits  
+C. 80 bits
+D. 64 bits
 
 ---
 
-# 📊 測驗解答
+## ✍️ Part 2: Short Answer Questions (12 points each, 36 points total)
 
-## 第一部分：選擇題解答
+### 6. Explain FRI's high-level working principle
+Please explain how FRI transforms complex low-degree testing problems into simple constant checks through the "commit-fold-repeat" process.
 
-### 1. 答案：C
-**解釋：** KZG 需要可信設置（"powers of tau" 儀式），這帶來中心化風險。如果設置過程被破壞或參與者串通，整個系統的安全性就會受到威脅，這與區塊鏈的去中心化理念相矛盾。
+### 7. Compare performance characteristics of FRI and KZG
+Please compare from the following four dimensions:
+a) Proof size
+b) Verification time  
+c) Trusted setup requirements
+d) Recursion friendliness
 
-### 2. 答案：B
-**解釋：** FRI 通過遞迴的「承諾-折疊-重複」過程工作：每輪折疊都將多項式的度數減半，最終將一個複雜的低度測試問題轉化為對常數多項式的簡單檢查。
-
-### 3. 答案：B  
-**解釋：** FRI 折疊基於多項式的奇偶分解。任何多項式都可以寫成 P(x) = P_even(x²) + x·P_odd(x²)，其中 P_even 包含偶數項，P_odd 包含奇數項。這種分解是 FRI 能夠逐步降低度數的數學基礎。
-
-### 4. 答案：B
-**解釋：** FRI 只依賴哈希函數和域運算，而 KZG 需要橢圓曲線配對。在電路中實現時，哈希函數的約束成本遠低於配對運算（約 1000 vs 1,000,000+ 約束），這使得 FRI 在遞迴驗證中具有巨大優勢。
-
-### 5. 答案：C
-**解釋：** Plonky2 的 FRI 配置（28 查詢輪數，特定參數設置）提供約 80 位安全性，這對大多數應用來說是足夠的，同時保持了良好的性能平衡。
+### 8. Analyze why FRI is more suitable for Plonky2's recursion goals
+Please explain FRI's cost advantages in circuit implementation and how this supports efficient recursion.
 
 ---
 
-## 第二部分：簡答題解答
+## 🧠 Part 3: Computation Questions (12 points)
 
-### 6. FRI 高層工作原理（12分）
-
-**承諾階段（4分）**
-- Prover 承諾多項式 P(x)，聲稱其度數 ≤ d
-- 使用 Merkle 樹承諾多項式在某個域上的所有取值
-
-**折疊階段（4分）**  
-- Verifier 發送隨機挑戰 α
-- Prover 計算折疊多項式：P_folded(y) = P_even(y) + α·P_odd(y)
-- 新多項式的度數約為原來的一半
-
-**重複過程（2分）**
-- 重複折疊過程 k 輪，直到得到常數多項式
-- 每輪都將度數減半：d → d/2 → d/4 → ... → 常數
-
-**最終驗證（2分）**
-- 對常數多項式進行簡單檢查
-- 遞迴驗證所有折疊步驟的一致性
-
-### 7. FRI 和 KZG 性能比較（12分）
-
-**a) 證明大小（3分）**
-- **KZG**：極小（~32 bytes），僅需一個群元素
-- **FRI**：中等（~45 KB），包含多輪 Merkle 路徑和查詢
-
-**b) 驗證時間（3分）**
-- **KZG**：快速（~2ms），僅需一次配對運算
-- **FRI**：快速（~0.5ms），O(log d) 次哈希運算
-
-**c) 可信設置需求（3分）**  
-- **KZG**：需要，"powers of tau" 儀式
-- **FRI**：不需要，完全透明
-
-**d) 遞迴友好性（3分）**
-- **KZG**：困難，配對在電路中實現成本極高（~1M+ 約束）
-- **FRI**：容易，只需哈希和域運算（~100K 約束）
-
-### 8. FRI 適合遞迴的原因分析（12分）
-
-**電路實現成本分析（6分）**
-- **橢圓曲線配對**：需要複雜的橢圓曲線運算、模運算、求逆等，約束數量巨大
-- **哈希函數**：Poseidon 哈希專為 ZK 友好設計，只需域的加法和乘法
-- **成本對比**：FRI 遞迴驗證約束數量比 KZG 少 10-100 倍
-
-**支持高效遞迴的機制（6分）**
-1. **域運算友好**：FRI 驗證只需要黃金域的基本運算
-2. **避免複雜密碼學**：不需要橢圓曲線、配對等複雜操作
-3. **並行化潛力**：哈希驗證可以高度並行化
-4. **遞迴組合性**：多個 FRI 證明容易聚合成單一證明
+### 9. FRI Folding Calculation Exercise
+Given polynomial `P(x) = 2x³ + 3x² + x + 4`, calculate one FRI folding operation:
+a) Decompose P(x) into odd and even terms
+b) Using random challenge α = 7, compute the folded polynomial
+c) Verify the degree of the folded polynomial
 
 ---
 
-## 第三部分：計算題解答
+## 💡 Part 4: Analysis Questions (12 points)
 
-### 9. FRI 折疊計算（12分）
+### 10. Scenario Selection Analysis
+A DeFi protocol needs to choose a polynomial commitment scheme with the following requirements:
+- Deployed on Ethereum mainnet, gas cost sensitive
+- Need on-chain proof verification
+- Users have strong decentralization demands
+- May need Layer 2 scaling in the future
 
-**給定：** P(x) = 2x³ + 3x² + x + 4，α = 7
+Please analyze the applicability of FRI and KZG in this scenario and provide recommendations.
 
-**a) 奇偶項分解（4分）**
+---
+
+# 📊 Quiz Solutions
+
+## Part 1: Multiple Choice Answers
+
+### 1. Answer: C
+**Explanation:** KZG requires trusted setup ("powers of tau" ceremony), which brings centralization risks. If the setup process is compromised or participants collude, the security of the entire system is threatened, contradicting blockchain's decentralization philosophy.
+
+### 2. Answer: B
+**Explanation:** FRI works through recursive "commit-fold-repeat" process: each folding round halves the polynomial degree, ultimately transforming a complex low-degree testing problem into simple checking of constant polynomials.
+
+### 3. Answer: B  
+**Explanation:** FRI folding is based on odd-even decomposition of polynomials. Any polynomial can be written as P(x) = P_even(x²) + x·P_odd(x²), where P_even contains even terms and P_odd contains odd terms. This decomposition is the mathematical foundation enabling FRI to gradually reduce degree.
+
+### 4. Answer: B
+**Explanation:** FRI only relies on hash functions and field operations, while KZG requires elliptic curve pairings. When implementing in circuits, hash function constraint costs are far lower than pairing operations (~1000 vs 1,000,000+ constraints), giving FRI huge advantages in recursive verification.
+
+### 5. Answer: C
+**Explanation:** Plonky2's FRI configuration (28 query rounds, specific parameter settings) provides approximately 80 bits of security, which is sufficient for most applications while maintaining good performance balance.
+
+---
+
+## Part 2: Short Answer Solutions
+
+### 6. FRI High-Level Working Principle (12 points)
+
+**Commitment Phase (4 points)**
+- Prover commits to polynomial P(x), claiming its degree ≤ d
+- Use Merkle tree to commit all evaluations of polynomial on some domain
+
+**Folding Phase (4 points)**  
+- Verifier sends random challenge α
+- Prover computes folded polynomial: P_folded(y) = P_even(y) + α·P_odd(y)
+- New polynomial's degree is approximately half of original
+
+**Repeat Process (2 points)**
+- Repeat folding process for k rounds until obtaining constant polynomial
+- Each round halves degree: d → d/2 → d/4 → ... → constant
+
+**Final Verification (2 points)**
+- Perform simple check on constant polynomial
+- Recursively verify consistency of all folding steps
+
+### 7. FRI and KZG Performance Comparison (12 points)
+
+**a) Proof Size (3 points)**
+- **KZG**: Extremely small (~32 bytes), only needs one group element
+- **FRI**: Medium (~45 KB), includes multiple rounds of Merkle paths and queries
+
+**b) Verification Time (3 points)**
+- **KZG**: Fast (~2ms), only needs one pairing operation
+- **FRI**: Fast (~0.5ms), O(log d) hash operations
+
+**c) Trusted Setup Requirements (3 points)**  
+- **KZG**: Required, "powers of tau" ceremony
+- **FRI**: Not required, completely transparent
+
+**d) Recursion Friendliness (3 points)**
+- **KZG**: Difficult, pairing implementation in circuits extremely expensive (~1M+ constraints)
+- **FRI**: Easy, only needs hash and field operations (~100K constraints)
+
+### 8. Analysis of Why FRI Suits Recursion (12 points)
+
+**Circuit Implementation Cost Analysis (6 points)**
+- **Elliptic curve pairing**: Requires complex elliptic curve operations, modular arithmetic, inversions, etc., enormous constraint count
+- **Hash functions**: Poseidon hash designed for ZK-friendliness, only needs field addition and multiplication
+- **Cost comparison**: FRI recursive verification constraint count is 10-100x less than KZG
+
+**Mechanisms Supporting Efficient Recursion (6 points)**
+1. **Field operation friendly**: FRI verification only needs basic Goldilocks field operations
+2. **Avoid complex cryptography**: No need for elliptic curves, pairings, etc.
+3. **Parallelization potential**: Hash verification can be highly parallelized
+4. **Recursive composability**: Multiple FRI proofs easily aggregate into single proof
+
+---
+
+## Part 3: Computation Solutions
+
+### 9. FRI Folding Calculation (12 points)
+
+**Given:** P(x) = 2x³ + 3x² + x + 4, α = 7
+
+**a) Odd-even decomposition (4 points)**
 ```
-P_even(x²) = 3x² + 4 = 3y + 4  (其中 y = x²)
-P_odd(x²) = 2x² + 1 = 2y + 1   (取出 x 的係數)
+P_even(x²) = 3x² + 4 = 3y + 4  (where y = x²)
+P_odd(x²) = 2x² + 1 = 2y + 1   (extract coefficients of x)
 
-驗證：P(x) = (3x² + 4) + x(2x² + 1) = 3x² + 4 + 2x³ + x = 2x³ + 3x² + x + 4 ✓
+Verification: P(x) = (3x² + 4) + x(2x² + 1) = 3x² + 4 + 2x³ + x = 2x³ + 3x² + x + 4 ✓
 ```
 
-**b) 折疊計算（4分）**
+**b) Folding calculation (4 points)**
 ```
 P_folded(y) = P_even(y) + α · P_odd(y)
             = (3y + 4) + 7 · (2y + 1)
@@ -177,73 +177,73 @@ P_folded(y) = P_even(y) + α · P_odd(y)
             = 17y + 11
 ```
 
-**c) 度數驗證（4分）**
+**c) Degree verification (4 points)**
 ```
-原多項式 P(x) 的度數：3
-折疊後 P_folded(y) 的度數：1
+Original polynomial P(x) degree: 3
+Folded P_folded(y) degree: 1
 
-度數降低：3 → 1，符合 FRI 折疊的度數減半原理
-（在變數替換 y = x² 的情況下，實際度數從 3 降到 1）
+Degree reduction: 3 → 1, conforms to FRI folding's degree halving principle
+(In the context of variable substitution y = x², actual degree reduces from 3 to 1)
 ```
 
 ---
 
-## 第四部分：分析題解答
+## Part 4: Analysis Solutions
 
-### 10. DeFi 協議場景分析（12分）
+### 10. DeFi Protocol Scenario Analysis (12 points)
 
-**需求分析（3分）**
-- Gas 成本敏感 → 偏向小證明
-- 鏈上驗證 → 需要高效驗證
-- 去中心化需求 → 偏向無可信設置
-- 未來 Layer 2 → 可能需要遞迴能力
+**Requirements Analysis (3 points)**
+- Gas cost sensitive → Favor small proofs
+- On-chain verification → Need efficient verification
+- Decentralization demand → Favor no trusted setup
+- Future Layer 2 → May need recursion capability
 
-**KZG 分析（3分）**
-優勢：
-- 證明極小（32 bytes），gas 成本最低
-- 鏈上驗證高效，技術成熟
+**KZG Analysis (3 points)**
+Advantages:
+- Extremely small proof (32 bytes), lowest gas cost
+- Efficient on-chain verification, mature technology
 
-劣勢：
-- 需要可信設置，違背去中心化需求
-- Layer 2 遞迴能力有限
+Disadvantages:
+- Requires trusted setup, violates decentralization demand
+- Limited Layer 2 recursion capability
 
-**FRI 分析（3分）**  
-優勢：
-- 完全透明，無可信設置
-- 為未來 Layer 2 遞迴做好準備
-- 驗證時間實際更快
+**FRI Analysis (3 points)**  
+Advantages:
+- Completely transparent, no trusted setup
+- Ready for future Layer 2 recursion
+- Actually faster verification time
 
-劣勢：
-- 證明大小較大（45KB），gas 成本較高
+Disadvantages:
+- Larger proof size (45KB), higher gas cost
 
-**推薦方案（3分）**
-**短期推薦：KZG**
-- 當前 gas 成本是主要瓶頸
-- 可信設置風險在短期內可控
-- 技術成熟度高
+**Recommended Solution (3 points)**
+**Short-term recommendation: KZG**
+- Current gas cost is main bottleneck
+- Trusted setup risk controllable in short term
+- High technology maturity
 
-**長期推薦：FRI**  
-- 去中心化是根本價值
-- Layer 2 遷移是必然趨勢
-- gas 成本問題會隨著技術發展緩解
+**Long-term recommendation: FRI**  
+- Decentralization is fundamental value
+- Layer 2 migration is inevitable trend
+- Gas cost issues will be alleviated with technological development
 
-**建議策略：** 採用模組化設計，支持未來從 KZG 向 FRI 的平滑遷移。
+**Suggested strategy:** Adopt modular design supporting smooth future migration from KZG to FRI.
 
 ---
 
-## 🎯 評分等級
+## 🎯 Grading Scale
 
-- **90-100分：** 優秀 - 深入理解 FRI 原理和應用場景
-- **80-89分：** 良好 - 很好掌握基本概念，能進行簡單分析
-- **70-79分：** 及格 - 基本理解主要概念
-- **60-69分：** 不及格 - 需要重新學習 FRI 相關內容  
-- **60分以下：** 不及格 - 建議重新完整學習本模組
+- **90-100 points:** Excellent - Deep understanding of FRI principles and application scenarios
+- **80-89 points:** Good - Good grasp of basic concepts with simple analysis capability
+- **70-79 points:** Pass - Basic understanding of main concepts
+- **60-69 points:** Fail - Need to re-learn FRI related content  
+- **Below 60 points:** Fail - Recommend complete re-study of this module
 
-## 📚 復習建議
+## 📚 Review Recommendations
 
-如果分數不理想，建議重點復習：
-1. **FRI 的數學基礎：多項式奇偶分解**
-2. **承諾-折疊-重複的完整流程**
-3. **FRI 相對於 KZG 的優劣對比**
-4. **遞迴驗證中的成本分析**  
-5. **實際應用場景中的技術選型考慮**
+If scores are not ideal, focus on reviewing:
+1. **Mathematical foundation of FRI: polynomial odd-even decomposition**
+2. **Complete process of commit-fold-repeat**
+3. **Pros and cons comparison between FRI and KZG**
+4. **Cost analysis in recursive verification**  
+5. **Technology selection considerations in real application scenarios**

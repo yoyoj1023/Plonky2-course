@@ -1,160 +1,160 @@
-# 模組二隨堂測驗：計算的語言 - 從執行軌跡到多項式約束
+# Module 2 Quiz: The Language of Computation - From Execution Trace to Polynomial Constraints
 
-**測驗時間：** 35 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
+**Quiz Time:** 35 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## 📝 第一部分：選擇題（每題 8 分，共 40 分）
+## 📝 Part 1: Multiple Choice Questions (8 points each, 40 points total)
 
-### 1. 執行軌跡（Execution Trace）的基本結構是什麼？
-A. 一維數組，每個元素代表一個計算步驟
-B. 二維表格，行代表時間步驟，列代表變數/暫存器
-C. 樹狀結構，每個節點代表一個運算
-D. 圖狀結構，邊代表數據依賴關係
+### 1. What is the basic structure of an Execution Trace?
+A. One-dimensional array, each element represents a computation step
+B. Two-dimensional table, rows represent time steps, columns represent variables/registers
+C. Tree structure, each node represents an operation
+D. Graph structure, edges represent data dependencies
 
-### 2. AIR 中的轉移約束（Transition Constraints）主要描述什麼？
-A. 每一行內部變數之間的關係
-B. 相鄰兩行之間的狀態變化關係
-C. 第一行和最後一行的特殊條件
-D. 不同列之間的數據類型約束
+### 2. What do Transition Constraints in AIR primarily describe?
+A. Relationships between variables within each row
+B. State change relationships between adjacent rows
+C. Special conditions for first and last rows
+D. Data type constraints between different columns
 
-### 3. 在 Fibonacci 執行軌跡中，如果當前行是 `[a=2, b=3, c=5]`，下一行應該是：
+### 3. In the Fibonacci execution trace, if the current row is `[a=2, b=3, c=5]`, what should the next row be?
 A. `[a=3, b=5, c=8]`
 B. `[a=5, b=8, c=13]`
 C. `[a=1, b=2, c=3]`
 D. `[a=2, b=3, c=5]`
 
-### 4. Plonky2 的混合模型的核心創新是什麼？
-A. 完全替換 PLONK 為 AIR
-B. 用 PLONK 的底層架構實現 AIR 風格的約束
-C. 將 AIR 和 STARK 直接結合
-D. 創造全新的算術化方法
+### 4. What is the core innovation of Plonky2's hybrid model?
+A. Completely replace PLONK with AIR
+B. Use PLONK's underlying architecture to implement AIR-style constraints
+C. Directly combine AIR and STARK
+D. Create entirely new arithmetization methods
 
-### 5. 相比 PLONK 約束，AIR 約束的主要特點是：
-A. 更複雜但更靈活
-B. 更簡單但限制更多
-C. 結構化程度更高，適合重複計算
-D. 完全等同，只是表達方式不同
-
----
-
-## ✍️ 第二部分：簡答題（每題 12 分，共 36 分）
-
-### 6. 比較 PLONK 和 AIR 的算術化思維差異
-請從以下三個角度比較：
-a) 思維模式（電路圖 vs 時間序列）
-b) 約束來源（門邏輯 vs 狀態轉移）
-c) 適用場景（通用計算 vs 重複計算）
-
-### 7. 解釋 AIR 中邊界約束的作用和重要性
-請說明：
-a) 什麼是邊界約束
-b) 為什麼需要邊界約束  
-c) 給出 Fibonacci 序列的邊界約束例子
-
-### 8. 分析 Plonky2 混合模型的優勢
-請解釋 Plonky2 如何用複製約束實現轉移約束，以及這種設計帶來的好處。
+### 5. Compared to PLONK constraints, what is the main characteristic of AIR constraints?
+A. More complex but more flexible
+B. Simpler but more restrictive
+C. Higher degree of structure, suitable for repetitive computations
+D. Completely equivalent, just different expressions
 
 ---
 
-## 🧠 第三部分：應用題（24 分）
+## ✍️ Part 2: Short Answer Questions (12 points each, 36 points total)
 
-### 9. 設計執行軌跡（12分）
-為計算 `x^8`（使用重複平方法：x → x² → x⁴ → x⁸）設計完整的執行軌跡，包括：
-a) 軌跡表格結構
-b) 轉移約束定義
-c) 邊界約束設定
+### 6. Compare the arithmetization thinking differences between PLONK and AIR
+Please compare from the following three perspectives:
+a) Thinking mode (circuit graph vs time series)
+b) Constraint source (gate logic vs state transition)
+c) Application scenarios (general computation vs repetitive computation)
 
-### 10. 混合模型實現（12分）
-說明如何在 Plonky2 中實現上題的 `x^8` 計算電路：
-a) CircuitBuilder 的主要步驟
-b) 如何使用複製約束連接各步驟
-c) 公開輸入和私有見證的設計
+### 7. Explain the role and importance of boundary constraints in AIR
+Please explain:
+a) What are boundary constraints
+b) Why are boundary constraints needed  
+c) Give an example of boundary constraints for Fibonacci sequence
+
+### 8. Analyze the advantages of Plonky2's hybrid model
+Please explain how Plonky2 uses copy constraints to implement transition constraints, and the benefits this design brings.
 
 ---
 
-# 📊 測驗解答
+## 🧠 Part 3: Application Questions (24 points)
 
-## 第一部分：選擇題解答
+### 9. Design Execution Trace (12 points)
+Design a complete execution trace for computing `x^8` (using repeated squaring: x → x² → x⁴ → x⁸), including:
+a) Trace table structure
+b) Transition constraint definitions
+c) Boundary constraint settings
 
-### 1. 答案：B
-**解釋：** 執行軌跡是二維表格結構，其中每一行代表計算過程中的一個時間步驟（狀態），每一列代表一個變數、暫存器或計算結果。這種結構清晰地展現了計算的時序性和狀態演進。
+### 10. Hybrid Model Implementation (12 points)
+Explain how to implement the `x^8` computation circuit from the previous question in Plonky2:
+a) Main steps of CircuitBuilder
+b) How to use copy constraints to connect each step
+c) Design of public inputs and private witnesses
 
-### 2. 答案：B
-**解釋：** 轉移約束描述相鄰兩行（時間步驟）之間的狀態變化關係，即 `state[i+1] = f(state[i])`。它確保計算的每一步都遵循正確的狀態轉移規則。
+---
 
-### 3. 答案：A
-**解釋：** 根據 Fibonacci 的轉移規則：
+# 📊 Quiz Solutions
+
+## Part 1: Multiple Choice Answers
+
+### 1. Answer: B
+**Explanation:** Execution trace is a two-dimensional table structure where each row represents a time step (state) in the computation process, and each column represents a variable, register, or computation result. This structure clearly shows the temporality and state evolution of computation.
+
+### 2. Answer: B
+**Explanation:** Transition constraints describe state change relationships between adjacent rows (time steps), i.e., `state[i+1] = f(state[i])`. They ensure each computation step follows correct state transition rules.
+
+### 3. Answer: A
+**Explanation:** According to Fibonacci transition rules:
 - `a[i+1] = b[i]` → `a = 3`
 - `b[i+1] = c[i]` → `b = 5` 
 - `c[i+1] = a[i+1] + b[i+1]` → `c = 3 + 5 = 8`
 
-### 4. 答案：B  
-**解釋：** Plonky2 的創新在於保持 PLONK 的底層架構（門約束和複製約束），但用這套機制來高效實現 AIR 風格的結構化約束，兼具兩者優勢。
+### 4. Answer: B  
+**Explanation:** Plonky2's innovation lies in maintaining PLONK's underlying architecture (gate constraints and copy constraints) while using this mechanism to efficiently implement AIR-style structured constraints, combining advantages of both.
 
-### 5. 答案：C
-**解釋：** AIR 約束具有高度結構化的特點，通常只涉及相鄰行的關係，這使得它特別適合描述重複、規律的計算過程，如虛擬機執行。
+### 5. Answer: C
+**Explanation:** AIR constraints have highly structured characteristics, usually only involving relationships between adjacent rows, making them particularly suitable for describing repetitive, regular computation processes like virtual machine execution.
 
 ---
 
-## 第二部分：簡答題解答
+## Part 2: Short Answer Solutions
 
-### 6. PLONK 和 AIR 算術化思維差異（12分）
+### 6. PLONK and AIR Arithmetization Thinking Differences (12 points)
 
-**a) 思維模式（4分）**
-- **PLONK**：電路圖思維，將計算表示為門和線路的連接圖，關注邏輯關係
-- **AIR**：時間序列思維，將計算表示為狀態在時間軸上的演進過程
+**a) Thinking Mode (4 points)**
+- **PLONK**: Circuit graph thinking, represents computation as connection graphs of gates and wires, focuses on logical relationships
+- **AIR**: Time series thinking, represents computation as state evolution process on timeline
 
-**b) 約束來源（4分）**  
-- **PLONK**：約束來自門的邏輯關係，每個門定義輸入輸出間的數學關係
-- **AIR**：約束來自狀態轉移規則，定義系統如何從一個狀態變化到下一個狀態
+**b) Constraint Source (4 points)**  
+- **PLONK**: Constraints come from gate logical relationships, each gate defines mathematical relationships between inputs and outputs
+- **AIR**: Constraints come from state transition rules, defining how system changes from one state to the next
 
-**c) 適用場景（4分）**
-- **PLONK**：通用計算，特別適合需要複雜任意連接的場景
-- **AIR**：重複/規律計算，特別適合虛擬機執行、密碼學運算等結構化場景
+**c) Application Scenarios (4 points)**
+- **PLONK**: General computation, particularly suitable for scenarios requiring complex arbitrary connections
+- **AIR**: Repetitive/regular computation, particularly suitable for structured scenarios like VM execution, cryptographic operations
 
-### 7. AIR 中邊界約束的作用（12分）
+### 7. Role of Boundary Constraints in AIR (12 points)
 
-**a) 什麼是邊界約束（4分）**
-邊界約束是對執行軌跡中特定行（通常是第一行或最後一行）的約束條件，定義了計算的初始狀態和/或最終狀態。
+**a) What are Boundary Constraints (4 points)**
+Boundary constraints are constraint conditions on specific rows in the execution trace (usually first or last row), defining the initial state and/or final state of computation.
 
-**b) 為什麼需要邊界約束（4分）**
-- **初始化**：確保計算從正確的初始狀態開始
-- **結果驗證**：確保計算得到期望的最終結果  
-- **完整性**：與轉移約束配合，完整定義整個計算過程
+**b) Why Boundary Constraints are Needed (4 points)**
+- **Initialization**: Ensure computation starts from correct initial state
+- **Result Verification**: Ensure computation achieves expected final result  
+- **Completeness**: Work with transition constraints to completely define entire computation process
 
-**c) Fibonacci 序列的邊界約束例子（4分）**
+**c) Fibonacci Sequence Boundary Constraint Example (4 points)**
 ```
-初始邊界約束：
+Initial boundary constraints:
 - a[0] = 0  (F(0) = 0)
 - b[0] = 1  (F(1) = 1)
 
-終端邊界約束（可選）：
-- c[n] = expected_result  (驗證第n個Fibonacci數)
+Terminal boundary constraints (optional):
+- c[n] = expected_result  (verify nth Fibonacci number)
 ```
 
-### 8. Plonky2 混合模型的優勢（12分）
+### 8. Advantages of Plonky2 Hybrid Model (12 points)
 
-**複製約束實現轉移約束的機制（6分）**
-- Plonky2 將執行軌跡的每一行映射為多個 PLONK 變數
-- 使用複製約束 `connect(trace[i].output, trace[i+1].input)` 實現狀態傳遞
-- 將 AIR 的轉移約束轉化為 PLONK 的複製約束
+**Mechanism of Copy Constraints Implementing Transition Constraints (6 points)**
+- Plonky2 maps each row of execution trace to multiple PLONK variables
+- Uses copy constraint `connect(trace[i].output, trace[i+1].input)` to implement state passing
+- Converts AIR transition constraints into PLONKY copy constraints
 
-**帶來的好處（6分）**
-1. **保持靈活性**：仍可使用 PLONK 的任意門約束
-2. **結構化效率**：對重複計算有 AIR 級別的效率
-3. **開發友好**：可以混合使用兩種約束風格  
-4. **遞迴友好**：複製約束在遞迴驗證中更容易處理
+**Benefits Brought (6 points)**
+1. **Maintain Flexibility**: Can still use PLONK's arbitrary gate constraints
+2. **Structured Efficiency**: AIR-level efficiency for repetitive computations
+3. **Developer Friendly**: Can mix both constraint styles  
+4. **Recursion Friendly**: Copy constraints are easier to handle in recursive verification
 
 ---
 
-## 第三部分：應用題解答
+## Part 3: Application Solutions
 
-### 9. 設計 x^8 執行軌跡（12分）
+### 9. Design x^8 Execution Trace (12 points)
 
-**a) 軌跡表格結構（4分）**
+**a) Trace Table Structure (4 points)**
 ```
 | Step | base | result |
 |------|------|--------|
@@ -164,72 +164,72 @@ c) 公開輸入和私有見證的設計
 |  3   |  x   |   x⁸   |
 ```
 
-**b) 轉移約束定義（4分）**
+**b) Transition Constraint Definitions (4 points)**
 ```
-對於每一行 i (i = 0, 1, 2)：
+For each row i (i = 0, 1, 2):
 result[i+1] = result[i] × result[i]
-base[i+1] = base[i]  (base保持不變)
+base[i+1] = base[i]  (base remains unchanged)
 ```
 
-**c) 邊界約束設定（4分）**
+**c) Boundary Constraint Settings (4 points)**
 ```
-初始約束：
+Initial constraints:
 - base[0] = x
 - result[0] = x
 
-終端約束：
+Terminal constraints:
 - result[3] = x^8
 ```
 
-### 10. Plonky2 混合模型實現（12分）
+### 10. Plonky2 Hybrid Model Implementation (12 points)
 
-**a) CircuitBuilder 主要步驟（4分）**
+**a) CircuitBuilder Main Steps (4 points)**
 ```rust
 let mut builder = CircuitBuilder::new(config);
 
-// 定義輸入
+// Define input
 let x = builder.add_virtual_target();
 
-// 計算各個冪次
+// Compute each power
 let x_squared = builder.mul(x, x);           // x²
 let x_fourth = builder.mul(x_squared, x_squared);   // x⁴  
 let x_eighth = builder.mul(x_fourth, x_fourth);     // x⁸
 ```
 
-**b) 複製約束連接（4分）**
-在這個特定例子中，由於每步都是平方運算，複製約束隱含在 `mul` 操作中：
-- `x_squared` 的兩個輸入都連接到 `x`
-- `x_fourth` 的兩個輸入都連接到 `x_squared`  
-- `x_eighth` 的兩個輸入都連接到 `x_fourth`
+**b) Copy Constraint Connections (4 points)**
+In this specific example, since each step is a squaring operation, copy constraints are implicit in the `mul` operations:
+- Both inputs of `x_squared` connect to `x`
+- Both inputs of `x_fourth` connect to `x_squared`  
+- Both inputs of `x_eighth` connect to `x_fourth`
 
-**c) 公開輸入和私有見證設計（4分）**
+**c) Public Input and Private Witness Design (4 points)**
 ```rust
-// 公開輸入
-builder.register_public_input(x);        // 輸入值 x
-builder.register_public_input(x_eighth); // 結果 x^8
+// Public inputs
+builder.register_public_input(x);        // Input value x
+builder.register_public_input(x_eighth); // Result x^8
 
-// 私有見證
+// Private witness
 let mut pw = PartialWitness::new();
 pw.set_target(x, F::from_canonical_u64(input_value));
 
-// 中間值 x², x⁴ 是私有的，不需要外部提供
+// Intermediate values x², x⁴ are private, no external provision needed
 ```
 
 ---
 
-## 🎯 評分等級
+## 🎯 Grading Scale
 
-- **90-100分：** 優秀 - 深入理解執行軌跡和 AIR 概念，能靈活應用
-- **80-89分：** 良好 - 很好掌握基本概念，有一定設計能力
-- **70-79分：** 及格 - 基本理解主要概念  
-- **60-69分：** 不及格 - 需要重新學習 AIR 相關內容
-- **60分以下：** 不及格 - 建議重新完整學習本模組
+- **90-100 points:** Excellent - Deep understanding of execution trace and AIR concepts, flexible application
+- **80-89 points:** Good - Good grasp of basic concepts with design capability
+- **70-79 points:** Pass - Basic understanding of main concepts  
+- **60-69 points:** Fail - Need to re-learn AIR related content
+- **Below 60 points:** Fail - Recommend complete re-study of this module
 
-## 📚 復習建議
+## 📚 Review Recommendations
 
-如果分數不理想，建議重點復習：
-1. **執行軌跡的二維表格結構和含義**
-2. **轉移約束和邊界約束的定義和作用**
-3. **PLONK 與 AIR 在思維模式上的根本差異**
-4. **Plonky2 混合模型如何融合兩種方法的優勢**
-5. **具體的軌跡設計和約束定義實踐**
+If scores are not ideal, focus on reviewing:
+1. **Two-dimensional table structure and meaning of execution trace**
+2. **Definition and role of transition and boundary constraints**
+3. **Fundamental differences in thinking modes between PLONK and AIR**
+4. **How Plonky2's hybrid model combines advantages of both methods**
+5. **Practical trace design and constraint definition practice**

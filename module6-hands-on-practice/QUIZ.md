@@ -1,73 +1,73 @@
-# 模組六隨堂測驗：動手實踐 - Fibonacci 經典範例與 API
+# Module 6 Quiz: Hands-On Practice - Fibonacci Classic Example & API
 
-**測驗時間：** 40 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
-
----
-
-## 📝 第一部分：選擇題（每題 8 分，共 32 分）
-
-### 1. 在 Plonky2 中，CircuitBuilder 的主要作用是什麼？
-A. 編譯 Rust 代碼
-B. 定義電路約束和變數的工具
-C. 生成零知識證明
-D. 驗證證明的正確性
-
-### 2. `add_virtual_target()` 方法的作用是什麼？
-A. 添加一個常數值
-B. 添加一個電路中的變數（線）
-C. 執行加法運算
-D. 連接兩個變數
-
-### 3. 在 Fibonacci 示例中，`register_public_input()` 註冊了哪些值？
-A. 所有中間計算結果
-B. 只有最終的 Fibonacci 數
-C. F(0)、F(1) 和 F(100)
-D. 整個計算過程
-
-### 4. PartialWitness 在零知識證明中的角色是什麼？
-A. 定義電路結構
-B. 提供私有輸入值的賦值
-C. 驗證證明正確性
-D. 生成公開參數
+**Quiz Time:** 40 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## ✍️ 第二部分：簡答題（每題 10 分，共 30 分）
+## 📝 Part 1: Multiple Choice Questions (8 points each, 32 points total)
 
-### 5. 解釋 Plonky2 開發的完整流程
-請按順序說明從電路設計到證明驗證的 8 個主要步驟。
+### 1. What is the main role of CircuitBuilder in Plonky2?
+A. Compile Rust code
+B. Tool for defining circuit constraints and variables
+C. Generate zero-knowledge proofs
+D. Verify proof correctness
 
-### 6. 分析 Fibonacci 示例中的約束設計
-請說明：
-a) 如何實現 F(n) = F(n-1) + F(n-2) 的遞推關係
-b) 複製約束在狀態轉移中的作用
-c) 公開輸入與私有見證的區別
+### 2. What does the `add_virtual_target()` method do?
+A. Add a constant value
+B. Add a variable (wire) in the circuit
+C. Execute addition operation
+D. Connect two variables
 
-### 7. 比較不同約束操作的成本
-請分析以下操作在電路中的約束成本：
-a) 加法操作 (`builder.add()`)
-b) 乘法操作 (`builder.mul()`)  
-c) 常數乘法 (`mul_const()`)
-d) 複製約束 (`connect()`)
+### 3. In the Fibonacci example, which values does `register_public_input()` register?
+A. All intermediate computation results
+B. Only the final Fibonacci number
+C. F(0), F(1), and F(100)
+D. The entire computation process
+
+### 4. What is the role of PartialWitness in zero-knowledge proofs?
+A. Define circuit structure
+B. Provide assignment of private input values
+C. Verify proof correctness
+D. Generate public parameters
 
 ---
 
-## 🧠 第三部分：編程應用題（28 分）
+## ✍️ Part 2: Short Answer Questions (10 points each, 30 points total)
 
-### 8. 電路設計練習（14分）
-請設計一個電路來證明知道滿足以下條件的秘密數 x：
+### 5. Explain the complete workflow of Plonky2 development
+Please describe in order the 8 main steps from circuit design to proof verification.
+
+### 6. Analyze constraint design in the Fibonacci example
+Please explain:
+a) How to implement the recurrence relation F(n) = F(n-1) + F(n-2)
+b) The role of copy constraints in state transitions
+c) The difference between public inputs and private witnesses
+
+### 7. Compare costs of different constraint operations
+Please analyze the constraint costs of the following operations in circuits:
+a) Addition operation (`builder.add()`)
+b) Multiplication operation (`builder.mul()`)  
+c) Constant multiplication (`mul_const()`)
+d) Copy constraint (`connect()`)
+
+---
+
+## 🧠 Part 3: Programming Application Questions (28 points)
+
+### 8. Circuit Design Exercise (14 points)
+Please design a circuit to prove knowledge of a secret number x satisfying:
 - x² + 3x + 2 = 0
-- x 是整數
+- x is an integer
 
-要求：
-a) 設計電路結構和約束
-b) 寫出 CircuitBuilder 的關鍵代碼
-c) 設計見證賦值策略
+Requirements:
+a) Design circuit structure and constraints
+b) Write key CircuitBuilder code
+c) Design witness assignment strategy
 
-### 9. 性能優化練習（14分）
-原始代碼（低效）：
+### 9. Performance Optimization Exercise (14 points)
+Original code (inefficient):
 ```rust
 let mut result = builder.zero();
 for i in 0..1000 {
@@ -76,17 +76,17 @@ for i in 0..1000 {
 }
 ```
 
-請：
-a) 識別性能問題
-b) 提供優化版本
-c) 估算約束數量的改善
+Please:
+a) Identify performance issues
+b) Provide optimized version
+c) Estimate constraint count improvement
 
 ---
 
-## 💡 第四部分：調試與分析題（10 分）
+## 💡 Part 4: Debugging & Analysis Questions (10 points)
 
-### 10. 錯誤分析與修復
-以下代碼有什麼問題？請分析並提供修復方案：
+### 10. Error Analysis & Fix
+What's wrong with the following code? Please analyze and provide a fix:
 
 ```rust
 fn broken_circuit() -> Result<()> {
@@ -101,7 +101,7 @@ fn broken_circuit() -> Result<()> {
     builder.register_public_input(z);
     
     let data = builder.build::<C>();
-    let proof = data.prove(pw)?;  // 編譯錯誤在這裡
+    let proof = data.prove(pw)?;  // Compilation error here
     
     data.verify(proof)
 }
@@ -109,228 +109,228 @@ fn broken_circuit() -> Result<()> {
 
 ---
 
-# 📊 測驗解答
+# 📊 Quiz Solutions
 
-## 第一部分：選擇題解答
+## Part 1: Multiple Choice Answers
 
-### 1. 答案：B
-**解釋：** CircuitBuilder 是定義電路約束和變數的核心工具，它提供了 `add_virtual_target()`、`add()`、`mul()` 等方法來構建電路結構和約束關係。
+### 1. Answer: B
+**Explanation:** CircuitBuilder is the core tool for defining circuit constraints and variables, providing methods like `add_virtual_target()`, `add()`, `mul()` to build circuit structure and constraint relationships.
 
-### 2. 答案：B  
-**解釋：** `add_virtual_target()` 添加一個電路中的變數（在 Plonky2 術語中稱為 Target），這個變數可以在後續的約束中使用，並在證明時賦予具體值。
+### 2. Answer: B  
+**Explanation:** `add_virtual_target()` adds a variable in the circuit (called Target in Plonky2 terminology), which can be used in subsequent constraints and assigned concrete values during proving.
 
-### 3. 答案：C
-**解釋：** 在 Fibonacci 示例中，公開輸入包括初始值 F(0)=0、F(1)=1 和最終結果 F(100)。中間的計算步驟是私有的，外部驗證者無法看到。
+### 3. Answer: C
+**Explanation:** In the Fibonacci example, public inputs include initial values F(0)=0, F(1)=1, and the final result F(100). Intermediate computation steps are private and not visible to external verifiers.
 
-### 4. 答案：B
-**解釋：** PartialWitness 負責為電路中的變數提供具體的數值賦值，這些值通常是私有的，只有證明者知道，是生成零知識證明的關鍵輸入。
+### 4. Answer: B
+**Explanation:** PartialWitness is responsible for providing concrete value assignments to circuit variables. These values are typically private, known only to the prover, and are key inputs for generating zero-knowledge proofs.
 
 ---
 
-## 第二部分：簡答題解答
+## Part 2: Short Answer Solutions
 
-### 5. Plonky2 開發完整流程（10分）
+### 5. Complete Plonky2 Development Workflow (10 points)
 
-**完整的 8 個步驟（每步 1.25 分）：**
+**Complete 8 steps (1.25 points each):**
 
-1. **電路配置**：創建 `CircuitConfig` 和 `CircuitBuilder`
-2. **定義變數**：使用 `add_virtual_target()` 添加電路變數
-3. **構建約束**：使用 `add()`、`mul()` 等操作定義計算邏輯
-4. **註冊公開輸入**：用 `register_public_input()` 指定可驗證的值
-5. **編譯電路**：調用 `build()` 生成 `CircuitData`
-6. **準備見證**：創建 `PartialWitness` 並用 `set_target()` 賦值
-7. **生成證明**：調用 `data.prove(pw)` 生成零知識證明
-8. **驗證證明**：調用 `data.verify(proof)` 驗證證明正確性
+1. **Circuit Configuration**: Create `CircuitConfig` and `CircuitBuilder`
+2. **Define Variables**: Use `add_virtual_target()` to add circuit variables
+3. **Build Constraints**: Use `add()`, `mul()` etc. to define computation logic
+4. **Register Public Inputs**: Use `register_public_input()` to specify verifiable values
+5. **Compile Circuit**: Call `build()` to generate `CircuitData`
+6. **Prepare Witness**: Create `PartialWitness` and use `set_target()` to assign values
+7. **Generate Proof**: Call `data.prove(pw)` to generate zero-knowledge proof
+8. **Verify Proof**: Call `data.verify(proof)` to verify proof correctness
 
-### 6. Fibonacci 約束設計分析（10分）
+### 6. Fibonacci Constraint Design Analysis (10 points)
 
-**a) 遞推關係實現（3.5分）**
+**a) Recurrence Relation Implementation (3.5 points)**
 ```rust
-// 在每次迭代中：
+// In each iteration:
 let next_target = builder.add(prev_target, curr_target);
-// 這創建了約束：next = prev + curr
+// This creates constraint: next = prev + curr
 
-// 狀態更新：
+// State update:
 prev_target = curr_target;
 curr_target = next_target;
 ```
 
-**b) 複製約束的作用（3.5分）**
-- 複製約束隱含在變數賦值中實現狀態轉移
-- `prev_target = curr_target` 確保下一步的 prev 等於當前步的 curr
-- `curr_target = next_target` 確保下一步的 curr 等於當前步的 next
-- 這些約束保證了 Fibonacci 序列的連續性
+**b) Role of Copy Constraints (3.5 points)**
+- Copy constraints are implicitly implemented in variable assignments for state transitions
+- `prev_target = curr_target` ensures next step's prev equals current step's curr
+- `curr_target = next_target` ensures next step's curr equals current step's next
+- These constraints guarantee continuity of Fibonacci sequence
 
-**c) 公開輸入 vs 私有見證（3分）**
+**c) Public Inputs vs Private Witnesses (3 points)**
 ```
-公開輸入：F(0)=0, F(1)=1, F(100)=結果
-- 任何人都可以看到和驗證
-- 用於確認計算的起點和終點
+Public Inputs: F(0)=0, F(1)=1, F(100)=result
+- Anyone can see and verify
+- Used to confirm computation start and end points
 
-私有見證：中間的 F(2), F(3), ..., F(99)
-- 只有證明者知道
-- 實現零知識特性：證明計算正確但不洩露過程
+Private Witnesses: Intermediate F(2), F(3), ..., F(99)
+- Only prover knows
+- Achieves zero-knowledge property: proves computation correctness without revealing process
 ```
 
-### 7. 約束操作成本分析（10分）
+### 7. Constraint Operation Cost Analysis (10 points)
 
-**a) 加法操作（2.5分）**
+**a) Addition Operation (2.5 points)**
 ```rust
-builder.add(a, b)  // 成本：1 個約束
+builder.add(a, b)  // Cost: 1 constraint
 ```
-- 創建線性約束：`a + b - result = 0`
-- 成本最低的基本運算
+- Creates linear constraint: `a + b - result = 0`
+- Lowest cost basic operation
 
-**b) 乘法操作（2.5分）**  
+**b) Multiplication Operation (2.5 points)**  
 ```rust
-builder.mul(a, b)  // 成本：1 個約束
+builder.mul(a, b)  // Cost: 1 constraint
 ```
-- 創建二次約束：`a × b - result = 0`
-- 比加法略複雜，但仍然高效
+- Creates quadratic constraint: `a × b - result = 0`
+- Slightly more complex than addition but still efficient
 
-**c) 常數乘法（2.5分）**
+**c) Constant Multiplication (2.5 points)**
 ```rust
-mul_const(target, constant)  // 成本：1 個約束
+mul_const(target, constant)  // Cost: 1 constraint
 ```
-- 優化的常數乘法，避免通用乘法門
-- 與變數乘法相同成本，但實現更簡單
+- Optimized constant multiplication, avoids general multiplication gates
+- Same cost as variable multiplication but simpler implementation
 
-**d) 複製約束（2.5分）**
+**d) Copy Constraint (2.5 points)**
 ```rust
-builder.connect(a, b)  // 成本：0 個額外約束
+builder.connect(a, b)  // Cost: 0 additional constraints
 ```
-- 通過置換參數實現，不增加約束數量
-- 最高效的約束類型
+- Implemented through permutation arguments, doesn't increase constraint count
+- Most efficient constraint type
 
 ---
 
-## 第三部分：編程應用題解答
+## Part 3: Programming Application Solutions
 
-### 8. 電路設計練習（14分）
+### 8. Circuit Design Exercise (14 points)
 
-**a) 電路結構設計（5分）**
+**a) Circuit Structure Design (5 points)**
 ```
-目標：證明 x² + 3x + 2 = 0，其中 x 是整數
+Goal: Prove x² + 3x + 2 = 0, where x is integer
 
-分析：x² + 3x + 2 = (x+1)(x+2) = 0
-所以 x = -1 或 x = -2
+Analysis: x² + 3x + 2 = (x+1)(x+2) = 0
+So x = -1 or x = -2
 
-電路約束：
+Circuit constraints:
 1. y = x²
 2. z = 3x  
 3. result = y + z + 2
 4. result = 0
 ```
 
-**b) CircuitBuilder 代碼（5分）**
+**b) CircuitBuilder Code (5 points)**
 ```rust
 fn quadratic_proof() -> Result<()> {
     let config = CircuitConfig::standard_recursion_config();
     let mut builder = CircuitBuilder::<F, D>::new(config);
     
-    // 定義秘密輸入 x
+    // Define secret input x
     let x = builder.add_virtual_target();
     
-    // 計算 x²
+    // Calculate x²
     let x_squared = builder.mul(x, x);
     
-    // 計算 3x
+    // Calculate 3x
     let three = builder.constant(F::from_canonical_u64(3));
     let three_x = builder.mul(three, x);
     
-    // 計算 x² + 3x
+    // Calculate x² + 3x
     let partial_sum = builder.add(x_squared, three_x);
     
-    // 計算 x² + 3x + 2
+    // Calculate x² + 3x + 2
     let two = builder.constant(F::from_canonical_u64(2));
     let result = builder.add(partial_sum, two);
     
-    // 約束結果為 0
+    // Constraint result to be 0
     let zero = builder.zero();
     builder.connect(result, zero);
     
-    // 公開輸入：只有結果（應該是0）
+    // Public input: only result (should be 0)
     builder.register_public_input(result);
     
     let data = builder.build::<C>();
-    // ... 見證和證明生成
+    // ... witness and proof generation
 }
 ```
 
-**c) 見證賦值策略（4分）**
+**c) Witness Assignment Strategy (4 points)**
 ```rust
-// 見證賦值
+// Witness assignment
 let mut pw = PartialWitness::new();
 
-// 選擇 x = -1（在黃金域中表示）
+// Choose x = -1 (represented in Goldilocks field)
 let x_value = F::from_canonical_u64(p - 1); // -1 mod p
 pw.set_target(x, x_value)?;
 
-// 驗證：(-1)² + 3(-1) + 2 = 1 - 3 + 2 = 0 ✓
+// Verification: (-1)² + 3(-1) + 2 = 1 - 3 + 2 = 0 ✓
 ```
 
-### 9. 性能優化練習（14分）
+### 9. Performance Optimization Exercise (14 points)
 
-**a) 性能問題識別（5分）**
+**a) Performance Issue Identification (5 points)**
 ```
-問題1：重複計算 x²
-- 在循環中 1000 次計算相同的 x²
-- 每次都創建新的約束
+Issue 1: Repeated computation of x²
+- Computing same x² 1000 times in loop
+- Creating new constraint each time
 
-問題2：約束數量爆炸  
-- 創建了 1000 個乘法約束
-- 創建了 1000 個加法約束
-- 總計：2000 個約束
+Issue 2: Constraint count explosion  
+- Created 1000 multiplication constraints
+- Created 1000 addition constraints
+- Total: 2000 constraints
 
-問題3：沒有利用常數優化
-- 可以預先計算 1000 × x²
+Issue 3: Not utilizing constant optimization
+- Could precompute 1000 × x²
 ```
 
-**b) 優化版本（5分）**
+**b) Optimized Version (5 points)**
 ```rust
-// 優化版本
-let x_squared = builder.mul(x, x);           // 1 個約束
+// Optimized version
+let x_squared = builder.mul(x, x);           // 1 constraint
 let thousand = builder.constant(F::from_canonical_u64(1000));
-let result = builder.mul(thousand, x_squared); // 1 個約束
+let result = builder.mul(thousand, x_squared); // 1 constraint
 
-// 或者更進一步優化
-let result = mul_const(&mut builder, x_squared, 1000); // 1 個約束
+// Or further optimization
+let result = mul_const(&mut builder, x_squared, 1000); // 1 constraint
 ```
 
-**c) 約束數量改善（4分）**
+**c) Constraint Count Improvement (4 points)**
 ```
-原始版本：
-- 乘法約束：1000 個
-- 加法約束：1000 個  
-- 總計：2000 個約束
+Original version:
+- Multiplication constraints: 1000
+- Addition constraints: 1000  
+- Total: 2000 constraints
 
-優化版本：
-- 乘法約束：2 個（x² 和 1000×x²）
-- 加法約束：0 個
-- 總計：2 個約束
+Optimized version:
+- Multiplication constraints: 2 (x² and 1000×x²)
+- Addition constraints: 0
+- Total: 2 constraints
 
-改善比例：2000 → 2，減少 99.9%
+Improvement ratio: 2000 → 2, reduced by 99.9%
 ```
 
 ---
 
-## 第四部分：調試與分析題解答
+## Part 4: Debugging & Analysis Solutions
 
-### 10. 錯誤分析與修復（10分）
+### 10. Error Analysis & Fix (10 points)
 
-**錯誤分析（5分）**
+**Error Analysis (5 points)**
 ```
-主要問題：
-1. PartialWitness pw 未定義就使用
-2. 沒有為變數 x, y 設置具體值
-3. 變數 y 定義了但未使用，可能導致約束不完整
+Main issues:
+1. PartialWitness pw used without being defined
+2. No concrete values set for variables x, y
+3. Variable y defined but unused, may cause incomplete constraints
 
-編譯錯誤原因：
-- pw 變數未聲明
-- 編譯器無法推斷 pw 的類型
+Compilation error reason:
+- pw variable undeclared
+- Compiler cannot infer pw type
 ```
 
-**修復方案（5分）**
+**Fix Solution (5 points)**
 ```rust
 fn fixed_circuit() -> Result<()> {
     const D: usize = 2;
@@ -345,12 +345,12 @@ fn fixed_circuit() -> Result<()> {
     let z = builder.add(x, y);
     
     builder.register_public_input(x);
-    builder.register_public_input(y);  // 添加 y 為公開輸入
+    builder.register_public_input(y);  // Add y as public input
     builder.register_public_input(z);
     
     let data = builder.build::<C>();
     
-    // 正確創建和設置 PartialWitness
+    // Correctly create and set PartialWitness
     let mut pw = PartialWitness::new();
     pw.set_target(x, F::from_canonical_u64(10))?;
     pw.set_target(y, F::from_canonical_u64(20))?;
@@ -363,19 +363,19 @@ fn fixed_circuit() -> Result<()> {
 
 ---
 
-## 🎯 評分等級
+## 🎯 Grading Scale
 
-- **90-100分：** 優秀 - 熟練掌握 Plonky2 API，能獨立設計和優化電路
-- **80-89分：** 良好 - 很好理解 API 使用，能完成基本電路設計
-- **70-79分：** 及格 - 基本掌握主要 API 和開發流程
-- **60-69分：** 不及格 - 需要重新學習 API 使用方法
-- **60分以下：** 不及格 - 建議重新完整學習本模組和動手實踐
+- **90-100 points:** Excellent - Proficient mastery of Plonky2 API, capable of independent circuit design and optimization
+- **80-89 points:** Good - Good understanding of API usage, capable of basic circuit design
+- **70-79 points:** Pass - Basic mastery of main APIs and development workflow
+- **60-69 points:** Fail - Need to re-learn API usage methods
+- **Below 60 points:** Fail - Recommend complete re-study of this module and hands-on practice
 
-## 📚 復習建議
+## 📚 Review Recommendations
 
-如果分數不理想，建議：
-1. **重新運行 fibonacci_course.rs**，理解每一行代碼
-2. **熟練掌握主要 API**：CircuitBuilder, Target, PartialWitness
-3. **練習電路設計**：從簡單例子開始逐步複雜化
-4. **學習約束優化**：理解不同操作的成本差異
-5. **掌握調試技巧**：能夠識別和修復常見錯誤
+If scores are not ideal, recommend:
+1. **Re-run fibonacci_course.rs**, understand every line of code
+2. **Master main APIs**: CircuitBuilder, Target, PartialWitness
+3. **Practice circuit design**: Start with simple examples, gradually increase complexity
+4. **Learn constraint optimization**: Understand cost differences of different operations
+5. **Master debugging techniques**: Able to identify and fix common errors

@@ -1,171 +1,171 @@
-# 🚀 Plonky2 課程快速入門指南
+# 🚀 Plonky2 Course Quick Start Guide
 
-歡迎來到 Plonky2 深度學習課程！這份指南將幫助您快速開始學習之旅。
+Welcome to the Plonky2 deep learning course! This guide will help you quickly begin your learning journey.
 
-## ⚡ 5 分鐘快速體驗
+## ⚡ 5-Minute Quick Experience
 
-### 1. 運行示例
+### 1. Run the Example
 ```bash
 cd 133-Plonky2-course-v2/plonky2/plonky2
 cargo run --example fibonacci_course
 ```
 
-### 2. 觀察輸出
-您將看到一個完整的零知識證明生成和驗證過程，包括：
-- 電路構建
-- 證明生成（約 1.2 秒）  
-- 證明驗證（約 12 毫秒）
-- 第 100 個 Fibonacci 數的證明
+### 2. Observe the Output
+You will see a complete zero-knowledge proof generation and verification process, including:
+- Circuit construction
+- Proof generation (about 1.2 seconds)  
+- Proof verification (about 12 milliseconds)
+- Proof of the 100th Fibonacci number
 
-### 3. 理解意義
-這個簡單的示例展示了 Plonky2 的核心能力：
-- **簡潔性**：45KB 固定大小證明
-- **高效性**：秒級證明生成，毫秒級驗證
-- **零知識**：只證明計算正確，不洩露中間過程
+### 3. Understand the Significance
+This simple example demonstrates Plonky2's core capabilities:
+- **Succinctness**: 45KB fixed-size proof
+- **Efficiency**: Second-level proof generation, millisecond-level verification
+- **Zero-Knowledge**: Only proves computation correctness without revealing intermediate processes
 
-## 📚 學習路徑建議
+## 📚 Learning Path Recommendations
 
-### 🎯 路徑 A：理論優先（適合研究者）
+### 🎯 Path A: Theory First (Suitable for Researchers)
 ```
-第 1 週：模組一、二、三 - 建立理論基礎
-第 2 週：模組四、五 - 深入技術細節  
-第 3 週：模組六、七 - 實踐與前沿
-```
-
-### 💻 路徑 B：實踐優先（適合開發者）
-```
-第 1 天：運行 fibonacci_course.rs - 建立直觀感受
-第 1 週：模組六 - 掌握 API 使用
-第 2-3 週：模組一至五 - 補充理論基礎
-第 4 週：模組七 - 了解發展方向
+Week 1: Modules 1, 2, 3 - Build theoretical foundation
+Week 2: Modules 4, 5 - Deep dive into technical details  
+Week 3: Modules 6, 7 - Practice and cutting-edge
 ```
 
-### 🌟 路徑 C：平衡學習（推薦）
+### 💻 Path B: Practice First (Suitable for Developers)
 ```
-第 1 週：模組一、二 + 運行示例 - 概念與實踐結合
-第 2 週：模組三、四 - 深入核心技術
-第 3 週：模組五、六 - 系統設計與編程實踐  
-第 4 週：模組七 + 自主項目 - 前沿探索
+Day 1: Run fibonacci_course.rs - Build intuitive understanding
+Week 1: Module 6 - Master API usage
+Week 2-3: Modules 1-5 - Supplement theoretical foundation
+Week 4: Module 7 - Understand development direction
 ```
 
-## 🛠️ 環境要求
+### 🌟 Path C: Balanced Learning (Recommended)
+```
+Week 1: Modules 1, 2 + Run examples - Combine concepts with practice
+Week 2: Modules 3, 4 - Deep dive into core technologies
+Week 3: Modules 5, 6 - System design and programming practice  
+Week 4: Module 7 + Independent project - Cutting-edge exploration
+```
 
-### 必需環境
-- **Rust**：1.70+ 版本
-- **Cargo**：隨 Rust 安裝
-- **Git**：用於克隆代碼庫
+## 🛠️ Environment Requirements
 
-### 推薦配置
-- **記憶體**：8GB+ RAM（推薦 16GB）
-- **CPU**：多核處理器（充分利用並行化）
-- **儲存**：5GB+ 可用空間
+### Required Environment
+- **Rust**: Version 1.70+
+- **Cargo**: Installed with Rust
+- **Git**: For cloning repositories
 
-### 安裝驗證
+### Recommended Configuration
+- **Memory**: 8GB+ RAM (16GB recommended)
+- **CPU**: Multi-core processor (fully utilize parallelization)
+- **Storage**: 5GB+ available space
+
+### Installation Verification
 ```bash
-# 檢查 Rust 版本
+# Check Rust version
 rustc --version
 
-# 檢查 Cargo 版本  
+# Check Cargo version  
 cargo --version
 
-# 測試編譯
+# Test compilation
 cd 133-Plonky2-course-v2/plonky2/plonky2
 cargo check
 ```
 
-## 📖 各模組學習要點
+## 📖 Learning Points for Each Module
 
-### 模組一：理解 "為什麼"
-- **關鍵問題**：為什麼需要 Plonky2？
-- **學習重點**：PLONK 的優勢與限制
-- **時間分配**：2-3 小時
+### Module 1: Understand "Why"
+- **Key Question**: Why do we need Plonky2?
+- **Learning Focus**: PLONK's advantages and limitations
+- **Time Allocation**: 2-3 hours
 
-### 模組二：掌握 "是什麼"  
-- **關鍵問題**：Plonky2 如何工作？
-- **學習重點**：AIR 與 PLONK 的融合
-- **時間分配**：3-4 小時
+### Module 2: Master "What Is It"  
+- **Key Question**: How does Plonky2 work?
+- **Learning Focus**: Fusion of AIR and PLONK
+- **Time Allocation**: 3-4 hours
 
-### 模組三：理解 "透明性"
-- **關鍵問題**：FRI 相比 KZG 的優勢？
-- **學習重點**：承諾方案的權衡
-- **時間分配**：4-5 小時
+### Module 3: Understand "Transparency"
+- **Key Question**: What are FRI's advantages over KZG?
+- **Learning Focus**: Trade-offs in commitment schemes
+- **Time Allocation**: 4-5 hours
 
-### 模組四：認識 "性能基礎"
-- **關鍵問題**：為什麼 Plonky2 這麼快？
-- **學習重點**：黃金域的數學魅力
-- **時間分配**：3-4 小時
+### Module 4: Recognize "Performance Foundation"
+- **Key Question**: Why is Plonky2 so fast?
+- **Learning Focus**: Mathematical charm of Goldilocks field
+- **Time Allocation**: 3-4 hours
 
-### 模組五：掌握 "終極能力"
-- **關鍵問題**：如何構建大規模系統？
-- **學習重點**：遞迴與聚合設計
-- **時間分配**：5-6 小時
+### Module 5: Master "Ultimate Capability"
+- **Key Question**: How to build large-scale systems?
+- **Learning Focus**: Recursion and aggregation design
+- **Time Allocation**: 5-6 hours
 
-### 模組六：動手 "實際編程"
-- **關鍵問題**：如何使用 Plonky2？
-- **學習重點**：API 熟練使用
-- **時間分配**：6-8 小時
+### Module 6: Hands-on "Actual Programming"
+- **Key Question**: How to use Plonky2?
+- **Learning Focus**: Proficient API usage
+- **Time Allocation**: 6-8 hours
 
-### 模組七：把握 "未來方向"
-- **關鍵問題**：技術如何演進？
-- **學習重點**：Plonky3 的革新
-- **時間分配**：3-4 小時
+### Module 7: Grasp "Future Direction"
+- **Key Question**: How will technology evolve?
+- **Learning Focus**: Plonky3's innovation
+- **Time Allocation**: 3-4 hours
 
-## 🎯 學習成果檢驗
+## 🎯 Learning Outcome Verification
 
-### 理論掌握檢驗
-- [ ] 能夠解釋 PLONK 與 AIR 的根本差異
-- [ ] 能夠分析 FRI 與 KZG 的權衡選擇  
-- [ ] 能夠描述黃金域的數學特性
-- [ ] 能夠設計遞迴聚合策略
+### Theoretical Mastery Verification
+- [ ] Can explain fundamental differences between PLONK and AIR
+- [ ] Can analyze trade-off choices between FRI and KZG  
+- [ ] Can describe mathematical properties of Goldilocks field
+- [ ] Can design recursive aggregation strategies
 
-### 實踐能力檢驗
-- [ ] 能夠修改 fibonacci_course.rs
-- [ ] 能夠實現簡單的自定義電路
-- [ ] 能夠分析電路性能瓶頸
-- [ ] 能夠解決常見的編程錯誤
+### Practical Ability Verification
+- [ ] Can modify fibonacci_course.rs
+- [ ] Can implement simple custom circuits
+- [ ] Can analyze circuit performance bottlenecks
+- [ ] Can solve common programming errors
 
-### 系統理解檢驗
-- [ ] 能夠評估 Plonky2 的適用場景
-- [ ] 能夠比較不同 ZKP 系統的優劣
-- [ ] 能夠設計基於 ZKP 的系統架構
-- [ ] 能夠預見技術發展趨勢
+### System Understanding Verification
+- [ ] Can evaluate Plonky2's applicable scenarios
+- [ ] Can compare pros and cons of different ZKP systems
+- [ ] Can design ZKP-based system architectures
+- [ ] Can foresee technology development trends
 
-## 🆘 遇到問題怎麼辦？
+## 🆘 What to Do When You Encounter Problems?
 
-### 編譯錯誤
-1. **檢查 Rust 版本**：確保 1.70+
-2. **清理緩存**：`cargo clean && cargo build`
-3. **檢查依賴**：確認所有庫版本相容
+### Compilation Errors
+1. **Check Rust version**: Ensure 1.70+
+2. **Clean cache**: `cargo clean && cargo build`
+3. **Check dependencies**: Confirm all library versions are compatible
 
-### 概念理解困難
-1. **多看示例**：從具體例子理解抽象概念
-2. **畫圖解析**：視覺化幫助理解複雜關係
-3. **循序漸進**：不要急於理解所有細節
+### Conceptual Understanding Difficulties
+1. **Look at more examples**: Understand abstract concepts through concrete examples
+2. **Draw diagrams**: Visualization helps understand complex relationships
+3. **Take it step by step**: Don't rush to understand all details
 
-### 數學門檻
-1. **先理解直觀**：掌握概念含義再深入數學
-2. **查閱資料**：補充必要的數學背景
-3. **實踐驗證**：通過代碼驗證數學概念
+### Mathematical Barriers
+1. **Understand intuitively first**: Grasp concept meaning before diving into mathematics
+2. **Consult materials**: Supplement necessary mathematical background
+3. **Verify through practice**: Verify mathematical concepts through code
 
-## 🌟 學習建議
+## 🌟 Learning Suggestions
 
-### 心態建議
-- **保持耐心**：ZKP 是複雜技術，需要時間消化
-- **動手實踐**：理論與實踐結合效果最佳
-- **追求理解**：比記憶更重要的是深入理解
+### Mindset Suggestions
+- **Stay patient**: ZKP is complex technology that needs time to digest
+- **Hands-on practice**: Theory combined with practice works best
+- **Pursue understanding**: Deep understanding is more important than memorization
 
-### 方法建議  
-- **做筆記**：記錄關鍵概念和個人理解
-- **畫圖表**：視覺化複雜的系統關係
-- **寫代碼**：通過編程加深理解
+### Method Suggestions  
+- **Take notes**: Record key concepts and personal understanding
+- **Draw diagrams**: Visualize complex system relationships
+- **Write code**: Deepen understanding through programming
 
-### 進度建議
-- **循序漸進**：不要跳躍式學習
-- **及時復習**：定期回顧前面學過的內容
-- **主動思考**：多問為什麼，追根溯源
+### Progress Suggestions
+- **Step by step**: Don't skip learning steps
+- **Review regularly**: Periodically review previously learned content
+- **Think actively**: Ask why more often, trace back to sources
 
 ---
 
-準備好開始這段激動人心的學習之旅了嗎？
+Ready to start this exciting learning journey?
 
-**從 [模組一](./module1-design-origins/) 開始，或者先運行一下 [Fibonacci 示例](./plonky2/plonky2/examples/fibonacci_course.rs) 感受一下 Plonky2 的魅力吧！** 🚀
+**Start with [Module 1](./module1-design-origins/) or first run the [Fibonacci example](./plonky2/plonky2/examples/fibonacci_course.rs) to feel Plonky2's charm!** 🚀

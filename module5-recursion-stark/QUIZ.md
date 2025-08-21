@@ -1,336 +1,336 @@
-# 模組五隨堂測驗：終極能力 - 高效遞迴與 STARK 協同
+# Module 5 Quiz: Ultimate Capability - Efficient Recursion & STARK Synergy
 
-**測驗時間：** 45 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
-
----
-
-## 📝 第一部分：選擇題（每題 8 分，共 32 分）
-
-### 1. 遞迴證明的核心概念是什麼？
-A. 證明一個電路包含另一個電路
-B. 證明系統能夠驗證自己生成的證明
-C. 證明可以無限縮小
-D. 證明可以重複使用
-
-### 2. Plonky2 遞迴驗證的約束數量大約是多少？
-A. ~10K 約束
-B. ~100K 約束  
-C. ~1M 約束
-D. ~10M 約束
-
-### 3. STARKs 與 Plonky2 協同的最佳實踐模式是什麼？
-A. 完全替換 Plonky2 為 STARKs
-B. STARKs 並行生成證明，Plonky2 遞迴聚合
-C. 只在最後階段使用 STARKs
-D. 兩者完全獨立使用
-
-### 4. 在 zkRollup 場景中，證明聚合的主要優勢是什麼？
-A. 減少證明生成時間
-B. 提高安全性
-C. 實現固定大小的最終證明，攤銷鏈上驗證成本
-D. 簡化編程複雜度
+**Quiz Time:** 45 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## ✍️ 第二部分：簡答題（每題 12 分，共 36 分）
+## 📝 Part 1: Multiple Choice Questions (8 points each, 32 points total)
 
-### 5. 解釋遞迴證明的三大核心能力
-請說明遞迴證明如何實現：
-a) 證明聚合
-b) 無限組合  
-c) 固定大小輸出
+### 1. What is the core concept of recursive proofs?
+A. Proving that one circuit contains another circuit
+B. Proving that a system can verify proofs it generates itself
+C. Proofs can be infinitely compressed
+D. Proofs can be reused
 
-### 6. 分析 Plonky2 在遞迴方面相比 KZG 系統的優勢
-請從以下角度分析：
-a) FRI 相比橢圓曲線配對的電路實現成本
-b) 黃金域相比其他域的遞迴友好性
-c) 同構性帶來的好處
+### 2. Approximately how many constraints does Plonky2 recursive verification require?
+A. ~10K constraints
+B. ~100K constraints  
+C. ~1M constraints
+D. ~10M constraints
 
-### 7. 設計 STARKs + Plonky2 協同系統的架構原則
-請說明：
-a) 如何分配計算任務給 STARKs 和 Plonky2
-b) 聚合策略的設計考慮
-c) 性能優化的關鍵點
+### 3. What is the best practice mode for STARKs and Plonky2 synergy?
+A. Completely replace Plonky2 with STARKs
+B. STARKs generate proofs in parallel, Plonky2 recursively aggregates
+C. Only use STARKs in the final stage
+D. Use both completely independently
 
----
-
-## 🧠 第三部分：系統設計題（22 分）
-
-### 8. zkEVM 證明系統設計（12分）
-設計一個處理 10,000 筆交易的 zkEVM 證明系統：
-a) 設計分層架構（STARKs vs Plonky2 的職責分工）
-b) 計算聚合策略（樹狀 vs 線性）
-c) 估算總體性能（時間、記憶體、並行度）
-
-### 9. 跨域聚合場景（10分）
-一個複雜系統包含：
-- CPU 模組（適合黃金域）
-- 記憶體模組（適合 BN254）  
-- 加密模組（適合 BLS12-381）
-
-請設計如何用 Plonky2 實現跨域聚合，並分析技術挑戰。
+### 4. In zkRollup scenarios, what is the main advantage of proof aggregation?
+A. Reduce proof generation time
+B. Improve security
+C. Achieve fixed-size final proofs, amortizing on-chain verification costs
+D. Simplify programming complexity
 
 ---
 
-## 💡 第四部分：性能分析題（10 分）
+## ✍️ Part 2: Short Answer Questions (12 points each, 36 points total)
 
-### 10. 聚合效率分析
-比較不同聚合策略處理 1,000,000 筆交易的性能：
-a) 純線性聚合
-b) 樹狀聚合（二叉樹）
-c) 混合策略（STARK並行 + Plonky2聚合）
+### 5. Explain the three core capabilities of recursive proofs
+Please explain how recursive proofs achieve:
+a) Proof aggregation
+b) Unlimited composition  
+c) Fixed size output
 
-請分析每種方案的時間複雜度、記憶體需求和實際可行性。
+### 6. Analyze Plonky2's advantages in recursion compared to KZG systems
+Please analyze from the following perspectives:
+a) Circuit implementation cost of FRI vs elliptic curve pairings
+b) Recursion friendliness of Goldilocks field vs other fields
+c) Benefits brought by isomorphism
 
----
-
-# 📊 測驗解答
-
-## 第一部分：選擇題解答
-
-### 1. 答案：B
-**解釋：** 遞迴證明是指一個證明系統能夠驗證自己生成的證明。這意味著可以構建一個電路來驗證同類型的證明，實現證明的嵌套和組合。
-
-### 2. 答案：B
-**解釋：** Plonky2 的遞迴驗證電路大約需要 100K 約束，這相比基於 KZG 的系統（需要 1M+ 約束來實現配對運算）是巨大的優勢。
-
-### 3. 答案：B  
-**解釋：** 最佳實踐是 STARKs 負責並行生成大量標準化證明（如交易執行），Plonky2 負責遞迴聚合這些證明。這結合了 STARKs 的高吞吐量和 Plonky2 的快速遞迴優勢。
-
-### 4. 答案：C
-**解釋：** 證明聚合的關鍵優勢是無論聚合多少個證明，最終輸出的證明大小保持恆定（~45KB），這使得鏈上驗證成本固定，可以攤銷到大量交易上。
+### 7. Design architectural principles for STARKs + Plonky2 synergistic systems
+Please explain:
+a) How to allocate computational tasks to STARKs and Plonky2
+b) Design considerations for aggregation strategies
+c) Key points for performance optimization
 
 ---
 
-## 第二部分：簡答題解答
+## 🧠 Part 3: System Design Questions (22 points)
 
-### 5. 遞迴證明的三大核心能力（12分）
+### 8. zkEVM Proof System Design (12 points)
+Design a zkEVM proof system handling 10,000 transactions:
+a) Design layered architecture (responsibility division between STARKs vs Plonky2)
+b) Calculate aggregation strategy (tree vs linear)
+c) Estimate overall performance (time, memory, parallelism)
 
-**a) 證明聚合（4分）**
-- 將多個獨立證明合併成單一證明
-- 例：證明A（交易1-1000有效）+ 證明B（交易1001-2000有效）→ 聚合證明（所有2000筆交易有效）
-- 實現方式：在遞迴電路中驗證多個子證明
+### 9. Cross-Domain Aggregation Scenario (10 points)
+A complex system contains:
+- CPU module (suitable for Goldilocks field)
+- Memory module (suitable for BN254)  
+- Crypto module (suitable for BLS12-381)
 
-**b) 無限組合（4分）**  
-- 證明可以無限層級嵌套
-- Layer 1：原始計算證明 → Layer 2：驗證Layer 1 → Layer 3：驗證Layer 2
-- 理論上可以無限延伸，實現任意複雜的組合邏輯
-
-**c) 固定大小輸出（4分）**
-- 無論聚合多少個證明，最終證明大小保持恆定
-- Plonky2：始終約 45KB，與輸入證明數量無關
-- 使得大規模系統的鏈上驗證成本可預測且攤銷
-
-### 6. Plonky2 遞迴優勢分析（12分）
-
-**a) 電路實現成本對比（4分）**
-```
-橢圓曲線配對（KZG驗證）：
-- 需要複雜的橢圓曲線運算、模運算、求逆
-- 約束數量：~1,000,000+
-
-FRI 驗證：
-- 只需哈希函數和域的基本運算
-- 約束數量：~100,000
-- 成本降低：10x
-```
-
-**b) 域的遞迴友好性（4分）**
-```
-黃金域優勢：
-- 64位運算與硬體原生匹配
-- 快速模運算，避免複雜除法
-- 與 Plonky2 的其他組件同構，無需域轉換
-- 相比 BN254 等域，電路約束減少 5-10x
-```
-
-**c) 同構性好處（4分）**
-- Verifier 和 Prover 使用相同的域（黃金域）
-- 避免昂貴的域轉換電路
-- 遞迴驗證中的所有運算都是原生的
-- 簡化電路設計，提高性能
-
-### 7. STARKs + Plonky2 協同架構（12分）
-
-**a) 任務分配原則（4分）**
-```
-STARKs 負責：
-- 大量重複、結構統一的計算（如 VM 執行）
-- 並行化友好的任務
-- AIR 算術化更自然的場景
-
-Plonky2 負責：
-- 證明聚合和遞迴驗證
-- 需要靈活約束的計算
-- 與外部系統的接口
-```
-
-**b) 聚合策略設計（4分）**
-```
-樹狀聚合：
-- 並行度最大化
-- 記憶體使用最小化
-- 總時間最短
-
-考慮因素：
-- STARK 證明生成速度
-- Plonky2 遞迴驗證速度
-- 硬體資源限制
-```
-
-**c) 性能優化關鍵（4分）**
-- **並行化最大化**：STARK 證明生成完全並行
-- **流水線設計**：邊生成邊聚合，減少等待時間
-- **記憶體管理**：及時釋放中間證明，避免記憶體爆炸
-- **負載均衡**：動態調整 STARK 和 Plonky2 的資源分配
+Please design how to implement cross-domain aggregation with Plonky2 and analyze technical challenges.
 
 ---
 
-## 第三部分：系統設計題解答
+## 💡 Part 4: Performance Analysis Questions (10 points)
 
-### 8. zkEVM 證明系統設計（12分）
+### 10. Aggregation Efficiency Analysis
+Compare performance of different aggregation strategies for processing 1,000,000 transactions:
+a) Pure linear aggregation
+b) Tree aggregation (binary tree)
+c) Hybrid strategy (STARK parallel + Plonky2 aggregation)
 
-**a) 分層架構設計（4分）**
+Please analyze time complexity, memory requirements, and practical feasibility of each approach.
+
+---
+
+# 📊 Quiz Solutions
+
+## Part 1: Multiple Choice Answers
+
+### 1. Answer: B
+**Explanation:** Recursive proof means a proof system can verify proofs it generates itself. This means you can build a circuit to verify the same type of proofs, enabling proof nesting and composition.
+
+### 2. Answer: B
+**Explanation:** Plonky2's recursive verification circuit requires approximately 100K constraints, which is a huge advantage compared to KZG-based systems (requiring 1M+ constraints to implement pairing operations).
+
+### 3. Answer: B  
+**Explanation:** Best practice is for STARKs to handle parallel generation of large amounts of standardized proofs (like transaction execution), while Plonky2 handles recursive aggregation of these proofs. This combines STARKs' high throughput with Plonky2's fast recursion advantages.
+
+### 4. Answer: C
+**Explanation:** The key advantage of proof aggregation is that regardless of how many proofs are aggregated, the final output proof size remains constant (~45KB), making on-chain verification costs fixed and amortizable across many transactions.
+
+---
+
+## Part 2: Short Answer Solutions
+
+### 5. Three Core Capabilities of Recursive Proofs (12 points)
+
+**a) Proof Aggregation (4 points)**
+- Merge multiple independent proofs into a single proof
+- Example: Proof A (transactions 1-1000 valid) + Proof B (transactions 1001-2000 valid) → Aggregated proof (all 2000 transactions valid)
+- Implementation: Verify multiple sub-proofs in recursive circuits
+
+**b) Unlimited Composition (4 points)**  
+- Proofs can be nested infinitely
+- Layer 1: Original computation proofs → Layer 2: Verify Layer 1 → Layer 3: Verify Layer 2
+- Theoretically can extend infinitely, enabling arbitrarily complex composition logic
+
+**c) Fixed Size Output (4 points)**
+- Regardless of how many proofs are aggregated, final proof size remains constant
+- Plonky2: Always ~45KB, independent of input proof count
+- Makes on-chain verification costs predictable and amortizable for large-scale systems
+
+### 6. Plonky2 Recursion Advantage Analysis (12 points)
+
+**a) Circuit Implementation Cost Comparison (4 points)**
 ```
-Layer 1 - STARK 並行處理：
+Elliptic Curve Pairing (KZG verification):
+- Requires complex elliptic curve operations, modular arithmetic, inversions
+- Constraint count: ~1,000,000+
+
+FRI Verification:
+- Only needs hash functions and basic field operations
+- Constraint count: ~100,000
+- Cost reduction: 10x
+```
+
+**b) Field Recursion Friendliness (4 points)**
+```
+Goldilocks Field Advantages:
+- 64-bit operations natively match hardware
+- Fast modular arithmetic, avoiding complex division
+- Isomorphic with other Plonky2 components, no field conversion needed
+- 5-10x fewer circuit constraints compared to BN254 and other fields
+```
+
+**c) Isomorphism Benefits (4 points)**
+- Verifier and Prover use the same field (Goldilocks)
+- Avoid expensive field conversion circuits
+- All operations in recursive verification are native
+- Simplifies circuit design and improves performance
+
+### 7. STARKs + Plonky2 Synergistic Architecture (12 points)
+
+**a) Task Allocation Principles (4 points)**
+```
+STARKs responsible for:
+- Large amounts of repetitive, structurally uniform computations (like VM execution)
+- Parallelization-friendly tasks
+- Scenarios where AIR arithmetization is more natural
+
+Plonky2 responsible for:
+- Proof aggregation and recursive verification
+- Computations requiring flexible constraints
+- Interfaces with external systems
+```
+
+**b) Aggregation Strategy Design (4 points)**
+```
+Tree Aggregation:
+- Maximize parallelism
+- Minimize memory usage
+- Shortest total time
+
+Considerations:
+- STARK proof generation speed
+- Plonky2 recursive verification speed
+- Hardware resource limitations
+```
+
+**c) Performance Optimization Keys (4 points)**
+- **Maximize Parallelization**: STARK proof generation completely parallel
+- **Pipeline Design**: Generate while aggregating, reduce waiting time
+- **Memory Management**: Timely release intermediate proofs, avoid memory explosion
+- **Load Balancing**: Dynamically adjust resource allocation between STARK and Plonky2
+
+---
+
+## Part 3: System Design Solutions
+
+### 8. zkEVM Proof System Design (12 points)
+
+**a) Layered Architecture Design (4 points)**
+```
+Layer 1 - STARK Parallel Processing:
 ├── Batch 1 (Txs 1-1000)    → STARK Proof 1
 ├── Batch 2 (Txs 1001-2000) → STARK Proof 2  
 ├── Batch 3 (Txs 2001-3000) → STARK Proof 3
 ├── ...
 └── Batch 10 (Txs 9001-10000) → STARK Proof 10
 
-Layer 2 - Plonky2 遞迴聚合：
-└── 樹狀聚合所有 STARK 證明 → 最終證明
+Layer 2 - Plonky2 Recursive Aggregation:
+└── Tree aggregation of all STARK proofs → Final proof
 ```
 
-**b) 聚合策略（4分）**
+**b) Aggregation Strategy (4 points)**
 ```
-選擇樹狀聚合：
-Level 0: 10 個 STARK 證明
-Level 1: 5 個中間聚合證明（每個聚合2個STARK）
-Level 2: 2-3 個中間聚合證明
-Level 3: 1 個最終證明
+Choose Tree Aggregation:
+Level 0: 10 STARK proofs
+Level 1: 5 intermediate aggregated proofs (each aggregates 2 STARKs)
+Level 2: 2-3 intermediate aggregated proofs
+Level 3: 1 final proof
 
-優勢：最大並行度，最短總時間
-```
-
-**c) 性能估算（4分）**
-```
-假設條件：
-- STARK 證明：1000 tx/證明，100 tx/秒生成
-- Plonky2 遞迴：1 證明/秒聚合
-
-計算：
-Level 0: 10,000 txs → 10 秒（並行）
-Level 1: 10 proofs → 5 秒（並行聚合5對）
-Level 2: 5 proofs → 2-3 秒
-Level 3: 2-3 proofs → 1 秒
-
-總時間：~19 秒
-並行度：最高10路並行
-記憶體：峰值~500MB（10個STARK證明）
+Advantages: Maximum parallelism, shortest total time
 ```
 
-### 9. 跨域聚合場景（10分）
-
-**技術挑戰分析（5分）**
+**c) Performance Estimation (4 points)**
 ```
-主要挑戰：
-1. 域不兼容：不同模組使用不同有限體
-2. 驗證複雜：需要在一個域中驗證其他域的證明
-3. 效率損失：域轉換帶來額外開銷
+Assumptions:
+- STARK proof: 1000 tx/proof, 100 tx/second generation
+- Plonky2 recursion: 1 proof/second aggregation
+
+Calculation:
+Level 0: 10,000 txs → 10 seconds (parallel)
+Level 1: 10 proofs → 5 seconds (parallel aggregation of 5 pairs)
+Level 2: 5 proofs → 2-3 seconds
+Level 3: 2-3 proofs → 1 second
+
+Total time: ~19 seconds
+Parallelism: Up to 10-way parallel
+Memory: Peak ~500MB (10 STARK proofs)
 ```
 
-**解決方案設計（5分）**
+### 9. Cross-Domain Aggregation Scenario (10 points)
+
+**Technical Challenge Analysis (5 points)**
 ```
-方案1：域嵌入 + 轉換電路
-- 將小域嵌入到大域中
-- 在黃金域中實現 BN254 和 BLS12-381 的運算
-- 代價：增加約束數量，但保持統一性
+Main Challenges:
+1. Field incompatibility: Different modules use different finite fields
+2. Verification complexity: Need to verify other field proofs in one field
+3. Efficiency loss: Field conversion brings additional overhead
+```
 
-方案2：分層聚合
-- 各模組在原生域中生成證明
-- 設計專門的跨域橋接電路
-- 最終在黃金域中統一聚合
+**Solution Design (5 points)**
+```
+Solution 1: Field embedding + conversion circuits
+- Embed smaller fields into larger fields
+- Implement BN254 and BLS12-381 operations in Goldilocks field
+- Cost: Increased constraint count, but maintains uniformity
 
-推薦方案2：
-- 保持各模組的最優性能
-- 只在聚合層處理跨域問題
-- 整體效率更高
+Solution 2: Layered aggregation
+- Each module generates proofs in native field
+- Design specialized cross-domain bridge circuits
+- Finally aggregate uniformly in Goldilocks field
+
+Recommended Solution 2:
+- Maintains optimal performance of each module
+- Only handles cross-domain issues at aggregation layer
+- Higher overall efficiency
 ```
 
 ---
 
-## 第四部分：性能分析題解答
+## Part 4: Performance Analysis Solutions
 
-### 10. 聚合效率分析（10分）
+### 10. Aggregation Efficiency Analysis (10 points)
 
-**a) 純線性聚合（3分）**
+**a) Pure Linear Aggregation (3 points)**
 ```
-策略：逐個聚合證明
-時間複雜度：O(n)，其中 n 為證明數量
-記憶體需求：O(1)，只需存儲當前聚合結果
-實際時間：1,000,000 × 1秒 = 11.6天
+Strategy: Aggregate proofs one by one
+Time complexity: O(n), where n is number of proofs
+Memory requirement: O(1), only store current aggregation result
+Actual time: 1,000,000 × 1 second = 11.6 days
 
-優勢：記憶體需求最小
-劣勢：時間最長，無法並行
+Advantages: Minimum memory requirement
+Disadvantages: Longest time, no parallelization possible
 ```
 
-**b) 樹狀聚合（4分）**
+**b) Tree Aggregation (4 points)**
 ```
-策略：二叉樹形式遞迴聚合  
-時間複雜度：O(log n)
-記憶體需求：O(n)（最壞情況存儲所有葉子節點）
-實際時間：log₂(1,000,000) × 1秒 ≈ 20秒
+Strategy: Binary tree recursive aggregation  
+Time complexity: O(log n)
+Memory requirement: O(n) (worst case store all leaf nodes)
+Actual time: log₂(1,000,000) × 1 second ≈ 20 seconds
 
-計算過程：
-Level 0: 1,000,000 證明
-Level 1: 500,000 證明（並行聚合）
-Level 2: 250,000 證明
+Calculation process:
+Level 0: 1,000,000 proofs
+Level 1: 500,000 proofs (parallel aggregation)
+Level 2: 250,000 proofs
 ...
-Level 20: 1 證明
+Level 20: 1 proof
 
-優勢：時間最短，高度並行
-劣勢：記憶體需求大，實現複雜
+Advantages: Shortest time, highly parallel
+Disadvantages: Large memory requirement, complex implementation
 ```
 
-**c) 混合策略分析（3分）**  
+**c) Hybrid Strategy Analysis (3 points)**  
 ```
-策略：STARK並行 + Plonky2樹狀聚合
-假設：1000 tx/STARK，1 STARK/秒生成
+Strategy: STARK parallel + Plonky2 tree aggregation
+Assumption: 1000 tx/STARK, 1 STARK/second generation
 
-階段1：生成 1,000 個 STARK 證明
-- 時間：1000秒（如果有1000個並行生成器，則1秒）
-- 記憶體：1000 × 證明大小
+Phase 1: Generate 1,000 STARK proofs
+- Time: 1000 seconds (1 second if 1000 parallel generators)
+- Memory: 1000 × proof size
 
-階段2：樹狀聚合 1,000 個證明
-- 時間：log₂(1000) ≈ 10秒  
-- 記憶體：峰值 1000 個證明
+Phase 2: Tree aggregate 1,000 proofs
+- Time: log₂(1000) ≈ 10 seconds  
+- Memory: Peak 1000 proofs
 
-總時間：1-1000秒（取決於並行度）
-實際可行性：最佳，平衡了時間和資源需求
+Total time: 1-1000 seconds (depending on parallelism)
+Practical feasibility: Best, balances time and resource requirements
 ```
 
-**綜合評估：**
-混合策略是最實用的方案，在合理的硬體投入下可以在分鐘級完成百萬交易的證明聚合。
+**Comprehensive Evaluation:**
+Hybrid strategy is the most practical approach, capable of completing million-transaction proof aggregation in minutes with reasonable hardware investment.
 
 ---
 
-## 🎯 評分等級
+## 🎯 Grading Scale
 
-- **90-100分：** 優秀 - 深入理解遞迴證明和大規模系統設計
-- **80-89分：** 良好 - 很好掌握核心概念，能進行系統分析
-- **70-79分：** 及格 - 基本理解主要概念
-- **60-69分：** 不及格 - 需要重新學習遞迴和協同相關內容
-- **60分以下：** 不及格 - 建議重新完整學習本模組
+- **90-100 points:** Excellent - Deep understanding of recursive proofs and large-scale system design
+- **80-89 points:** Good - Good grasp of core concepts with system analysis capability
+- **70-79 points:** Pass - Basic understanding of main concepts
+- **60-69 points:** Fail - Need to re-learn recursion and synergy related content
+- **Below 60 points:** Fail - Recommend complete re-study of this module
 
-## 📚 復習建議
+## 📚 Review Recommendations
 
-如果分數不理想，建議重點復習：
-1. **遞迴證明的基本概念和實現機制**
-2. **Plonky2 相比其他系統在遞迴方面的優勢**
-3. **STARKs 與 Plonky2 的協同工作模式**
-4. **大規模證明系統的架構設計原則**
-5. **性能分析和優化策略的量化方法**
+If scores are not ideal, focus on reviewing:
+1. **Basic concepts and implementation mechanisms of recursive proofs**
+2. **Plonky2's advantages in recursion compared to other systems**
+3. **Collaborative working modes of STARKs and Plonky2**
+4. **Architectural design principles for large-scale proof systems**
+5. **Quantitative methods for performance analysis and optimization strategies**

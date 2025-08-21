@@ -1,211 +1,211 @@
-# 模組四隨堂測驗：極速之核 - 黃金域與硬體友好
+# Module 4 Quiz: The Core of Speed - Goldilocks Field & Hardware-Friendliness
 
-**測驗時間：** 40 分鐘  
-**總分：** 100 分  
-**及格分數：** 70 分
+**Quiz Time:** 40 minutes  
+**Total Score:** 100 points  
+**Passing Score:** 70 points
 
 ---
 
-## 📝 第一部分：選擇題（每題 8 分，共 32 分）
+## 📝 Part 1: Multiple Choice Questions (8 points each, 32 points total)
 
-### 1. 黃金域（Goldilocks Field）的質數 p 是多少？
+### 1. What is the prime p of the Goldilocks Field?
 A. 2^64 - 1
 B. 2^64 - 2^32 + 1  
 C. 2^61 - 1
 D. 2^63 - 25
 
-### 2. 黃金域的 2-adicity 是多少？
+### 2. What is the 2-adicity of the Goldilocks field?
 A. 16
 B. 24
 C. 32
 D. 64
 
-### 3. 為什麼稱為「黃金」域？
-A. 因為顏色是金色的
-B. 因為數學上具有「恰到好處」的完美特性
-C. 因為是最貴的計算方案
-D. 因為發現者姓 Gold
+### 3. Why is it called the "Goldilocks" field?
+A. Because the color is golden
+B. Because it has mathematically "just right" perfect properties
+C. Because it's the most expensive computational solution
+D. Because the discoverer's surname is Gold
 
-### 4. 在零知識證明系統中，體運算效率為什麼如此重要？
-A. 只影響證明大小
-B. 所有運算都在有限體中進行，直接決定系統性能
-C. 只影響驗證時間
-D. 主要影響安全性
-
----
-
-## ✍️ 第二部分：簡答題（每題 10 分，共 40 分）
-
-### 5. 解釋黃金域的數學結構特性
-請說明：
-a) p = 2^64 - 2^32 + 1 的結構如何支持快速模運算
-b) 高 2-adicity 對 FFT 運算的意義
-
-### 6. 分析黃金域的硬體友好性
-請從以下角度分析：
-a) 64位元 CPU 架構的匹配
-b) SIMD 向量化的支持
-c) 記憶體效率的提升
-
-### 7. 比較不同有限體的性能特徵
-請比較黃金域、BN254 體、二進制體在以下方面的表現：
-a) 硬體友好程度
-b) FFT 效率  
-c) 安全性級別
-d) 適用場景
-
-### 8. 解釋 NTT（數論變換）在 ZKP 中的重要作用
-請說明：
-a) NTT 如何加速多項式運算
-b) 為什麼黃金域特別適合 NTT
-c) 性能提升的量化數據
+### 4. Why is field operation efficiency so important in zero-knowledge proof systems?
+A. Only affects proof size
+B. All operations are performed in finite fields, directly determining system performance
+C. Only affects verification time
+D. Mainly affects security
 
 ---
 
-## 🧠 第三部分：計算題（18 分）
+## ✍️ Part 2: Short Answer Questions (10 points each, 40 points total)
 
-### 9. 黃金域運算練習（9分）
-已知黃金域 p = 2^64 - 2^32 + 1：
-a) 計算 (2^63 + 100) mod p
-b) 解釋為什麼這個計算在黃金域中特別高效
-c) 寫出快速模運算的算法步驟
+### 5. Explain the mathematical structural properties of the Goldilocks field
+Please explain:
+a) How the structure p = 2^64 - 2^32 + 1 supports fast modular arithmetic
+b) The significance of high 2-adicity for FFT operations
 
-### 10. FFT 複雜度分析（9分）
-比較以下多項式運算的複雜度：
-a) 1024 次多項式乘法的樸素算法複雜度
-b) 使用 FFT 的複雜度
-c) 計算性能提升比例，並說明在 ZKP 中的實際意義
+### 6. Analyze the hardware-friendliness of the Goldilocks field
+Please analyze from the following perspectives:
+a) Matching with 64-bit CPU architecture
+b) SIMD vectorization support
+c) Memory efficiency improvements
 
----
+### 7. Compare performance characteristics of different finite fields
+Please compare Goldilocks field, BN254 field, and binary fields in the following aspects:
+a) Hardware friendliness level
+b) FFT efficiency  
+c) Security level
+d) Application scenarios
 
-## 💡 第四部分：應用題（10 分）
-
-### 11. 遞迴電路設計考慮
-一個需要遞迴驗證的 zkRollup 系統正在選擇底層域：
-- 需要在電路中模擬大量域運算
-- 對遞迴驗證性能要求極高
-- 需要支持大規模 FFT 計算
-- 硬體資源有限
-
-請分析為什麼黃金域是最佳選擇，並估算性能優勢。
-
----
-
-# 📊 測驗解答
-
-## 第一部分：選擇題解答
-
-### 1. 答案：B
-**解釋：** 黃金域的質數是 p = 2^64 - 2^32 + 1 = 18446744069414584321。這個特殊形式的質數具有優秀的數學性質和硬體友好特性。
-
-### 2. 答案：C
-**解釋：** 黃金域的 2-adicity 是 32，因為 p-1 = 2^64 - 2^32 = 2^32 × (2^32 - 1)，最大的 2 的冪次是 2^32。這意味著可以進行最大 2^32 點的 FFT。
-
-### 3. 答案：B
-**解釋：** 稱為「黃金」是因為這個域的大小和特性恰到好處：64位與現代CPU匹配，高2-adicity支持大規模FFT，模運算結構支持快速計算，是「完美平衡」的體現。
-
-### 4. 答案：B  
-**解釋：** 在零知識證明系統中，所有運算（多項式運算、哈希計算、約束驗證、FFT變換等）都在有限體中進行，體運算的效率直接決定整個系統的性能。
+### 8. Explain the important role of NTT (Number Theoretic Transform) in ZKP
+Please explain:
+a) How NTT accelerates polynomial operations
+b) Why Goldilocks field is particularly suitable for NTT
+c) Quantified performance improvement data
 
 ---
 
-## 第二部分：簡答題解答
+## 🧠 Part 3: Computation Questions (18 points)
 
-### 5. 黃金域的數學結構特性（10分）
+### 9. Goldilocks Field Operation Exercise (9 points)
+Given Goldilocks field p = 2^64 - 2^32 + 1:
+a) Calculate (2^63 + 100) mod p
+b) Explain why this calculation is particularly efficient in Goldilocks field
+c) Write out the algorithm steps for fast modular arithmetic
 
-**a) 快速模運算支持（5分）**
-p = 2^64 - 2^32 + 1 的特殊形式支持快速模運算：
-- 利用 2^64 ≡ 2^32 - 1 (mod p) 的性質
-- 將 128 位乘法結果快速歸約到 64 位
-- 算法：`(lo + hi * (2^32 - 1)) mod p`，最多需要一次額外減法
+### 10. FFT Complexity Analysis (9 points)
+Compare the complexity of the following polynomial operations:
+a) Naive algorithm complexity for 1024-degree polynomial multiplication
+b) Complexity using FFT
+c) Calculate performance improvement ratio and explain practical significance in ZKP
 
-**b) 高 2-adicity 的 FFT 意義（5分）**
-- 2-adicity = 32 意味著存在 2^32 次單位根
-- 支持最大 2^32 = 4,294,967,296 點的 FFT
-- 對於實際應用（通常 < 2^20 點）提供充足的靈活性
-- 原根的存在保證了高效的 NTT 實現
+---
 
-### 6. 黃金域的硬體友好性（10分）
+## 💡 Part 4: Application Questions (10 points)
 
-**a) 64位元 CPU 架構匹配（3.5分）**
-- 域元素直接映射到 u64，無需多精度運算
-- 加法、乘法可使用原生 CPU 指令
-- 減少記憶體訪問和數據轉換開銷
+### 11. Recursive Circuit Design Considerations
+A zkRollup system requiring recursive verification is choosing an underlying field:
+- Need to simulate large amounts of field operations in circuits
+- Extremely high performance requirements for recursive verification
+- Need to support large-scale FFT computations
+- Limited hardware resources
 
-**b) SIMD 向量化支持（3.5分）**  
-- AVX2 可一次處理 4 個域元素
-- AVX-512 可一次處理 8 個域元素
-- 批量運算可獲得 4-8x 性能提升
+Please analyze why Goldilocks field is the best choice and estimate performance advantages.
 
-**c) 記憶體效率提升（3分）**
-- 每個元素僅需 8 bytes（vs BN254 的 32 bytes）
-- 快取命中率提升約 4x
-- 記憶體頻寬需求減少 75%
+---
 
-### 7. 不同有限體性能比較（10分）
+# 📊 Quiz Solutions
 
-| 特性 | 黃金域 | BN254 體 | 二進制體 F₂ₙ |
-|------|--------|----------|-------------|
-| **硬體友好** | 極高(2.5分) | 中等 | 高 |
-| **FFT效率** | 極高(2.5分) | 中等 | 高 |
-| **安全性** | 高(2.5分) | 高 | 中等 |
-| **適用場景** | 高性能ZKP(2.5分) | 以太坊兼容 | 輕量級應用 |
+## Part 1: Multiple Choice Answers
 
-**詳細分析：**
-- **黃金域**：為ZKP專門優化，性能最佳
-- **BN254**：支持配對，但運算複雜
-- **二進制體**：XOR運算快，但安全性相對較低
+### 1. Answer: B
+**Explanation:** The Goldilocks field prime is p = 2^64 - 2^32 + 1 = 18446744069414584321. This special form prime has excellent mathematical properties and hardware-friendly characteristics.
 
-### 8. NTT 在 ZKP 中的重要作用（10分）
+### 2. Answer: C
+**Explanation:** The Goldilocks field's 2-adicity is 32, because p-1 = 2^64 - 2^32 = 2^32 × (2^32 - 1), with the maximum power of 2 being 2^32. This means FFTs up to 2^32 points can be performed.
 
-**a) 多項式運算加速（3.5分）**
-- 多項式乘法：O(n²) → O(n log n)
-- 多點求值：O(n²) → O(n log n)
-- 插值運算：O(n²) → O(n log n)
+### 3. Answer: B
+**Explanation:** Called "Goldilocks" because this field's size and properties are just right: 64 bits matches modern CPUs, high 2-adicity supports large-scale FFT, modular arithmetic structure supports fast computation - embodying "perfect balance."
 
-**b) 黃金域的 NTT 優勢（3.5分）**
-- 高 2-adicity 保證充足的單位根
-- 64位運算與硬體完美匹配
-- 快速模運算減少每步開銷
+### 4. Answer: B  
+**Explanation:** In zero-knowledge proof systems, all operations (polynomial operations, hash computations, constraint verification, FFT transforms, etc.) are performed in finite fields. Field operation efficiency directly determines entire system performance.
 
-**c) 性能提升數據（3分）**
+---
+
+## Part 2: Short Answer Solutions
+
+### 5. Mathematical Structural Properties of Goldilocks Field (10 points)
+
+**a) Fast Modular Arithmetic Support (5 points)**
+The special form p = 2^64 - 2^32 + 1 supports fast modular arithmetic:
+- Utilizes the property 2^64 ≡ 2^32 - 1 (mod p)
+- Quickly reduces 128-bit multiplication results to 64 bits
+- Algorithm: `(lo + hi * (2^32 - 1)) mod p`, at most one additional subtraction needed
+
+**b) High 2-adicity FFT Significance (5 points)**
+- 2-adicity = 32 means 2^32-th roots of unity exist
+- Supports FFTs up to 2^32 = 4,294,967,296 points
+- Provides ample flexibility for practical applications (typically < 2^20 points)
+- Existence of primitive roots guarantees efficient NTT implementation
+
+### 6. Hardware-Friendliness of Goldilocks Field (10 points)
+
+**a) 64-bit CPU Architecture Matching (3.5 points)**
+- Field elements directly map to u64, no multi-precision arithmetic needed
+- Addition, multiplication can use native CPU instructions
+- Reduces memory access and data conversion overhead
+
+**b) SIMD Vectorization Support (3.5 points)**  
+- AVX2 can process 4 field elements at once
+- AVX-512 can process 8 field elements at once
+- Batch operations can achieve 4-8x performance improvement
+
+**c) Memory Efficiency Improvements (3 points)**
+- Each element needs only 8 bytes (vs BN254's 32 bytes)
+- Cache hit rate improved ~4x
+- Memory bandwidth requirements reduced by 75%
+
+### 7. Different Finite Field Performance Comparison (10 points)
+
+| Feature | Goldilocks | BN254 Field | Binary Field F₂ₙ |
+|---------|------------|-------------|------------------|
+| **Hardware Friendly** | Extremely High (2.5 pts) | Medium | High |
+| **FFT Efficiency** | Extremely High (2.5 pts) | Medium | High |
+| **Security** | High (2.5 pts) | High | Medium |
+| **Application Scenarios** | High-performance ZKP (2.5 pts) | Ethereum compatibility | Lightweight applications |
+
+**Detailed Analysis:**
+- **Goldilocks**: Specially optimized for ZKP, best performance
+- **BN254**: Supports pairings, but complex operations
+- **Binary Field**: Fast XOR operations, but relatively lower security
+
+### 8. Important Role of NTT in ZKP (10 points)
+
+**a) Polynomial Operation Acceleration (3.5 points)**
+- Polynomial multiplication: O(n²) → O(n log n)
+- Multi-point evaluation: O(n²) → O(n log n)
+- Interpolation: O(n²) → O(n log n)
+
+**b) Goldilocks Field NTT Advantages (3.5 points)**
+- High 2-adicity guarantees sufficient roots of unity
+- 64-bit operations perfectly match hardware
+- Fast modular arithmetic reduces overhead per step
+
+**c) Performance Improvement Data (3 points)**
 ```
-2^20 點 NTT 性能對比：
-- BN254 體: ~150ms
-- 黃金域: ~15ms  
-- 加速比: 10x
+2^20 point NTT performance comparison:
+- BN254 field: ~150ms
+- Goldilocks: ~15ms  
+- Speedup: 10x
 
-實際 ZKP 系統中 FFT 佔總時間的 60-80%，
-因此整體系統性能提升 6-8x
+In actual ZKP systems, FFT accounts for 60-80% of total time,
+resulting in 6-8x overall system performance improvement
 ```
 
 ---
 
-## 第三部分：計算題解答
+## Part 3: Computation Solutions
 
-### 9. 黃金域運算練習（9分）
+### 9. Goldilocks Field Operation Exercise (9 points)
 
-**a) 計算 (2^63 + 100) mod p（3分）**
+**a) Calculate (2^63 + 100) mod p (3 points)**
 ```
 x = 2^63 + 100
 p = 2^64 - 2^32 + 1
 
-使用快速模運算：
+Using fast modular arithmetic:
 2^63 = 2^32 * 2^31
-由於 2^64 ≡ 2^32 - 1 (mod p)
-所以 2^63 ≡ (2^32 - 1)/2 ≡ 2^31 - 1/2
+Since 2^64 ≡ 2^32 - 1 (mod p)
+So 2^63 ≡ (2^32 - 1)/2 ≡ 2^31 - 1/2
 
-但更直接的方法：
-2^63 + 100 < 2^64，直接計算
+But more directly:
+2^63 + 100 < 2^64, calculate directly
 result = 9223372036854775808 + 100 = 9223372036854775908
 ```
 
-**b) 高效性原因（3分）**
-- 結果小於 2^64，無需模運算
-- 即使需要，也只需一次快速歸約
-- 避免了昂貴的除法運算
+**b) Efficiency Reasons (3 points)**
+- Result is less than 2^64, no modular arithmetic needed
+- Even if needed, only one fast reduction required
+- Avoids expensive division operations
 
-**c) 快速模運算算法（3分）**
+**c) Fast Modular Arithmetic Algorithm (3 points)**
 ```rust
 fn goldilocks_reduce(x: u128) -> u64 {
     let (lo, hi) = (x as u64, (x >> 64) as u64);
@@ -218,91 +218,91 @@ fn goldilocks_reduce(x: u128) -> u64 {
 }
 ```
 
-### 10. FFT 複雜度分析（9分）
+### 10. FFT Complexity Analysis (9 points)
 
-**a) 樸素算法複雜度（3分）**
-1024 次多項式乘法：
-- 每次乘法：O(n²)，其中 n 是多項式度數
-- 假設平均度數為 d，總複雜度：O(1024 × d²)
+**a) Naive Algorithm Complexity (3 points)**
+1024-degree polynomial multiplication:
+- Each multiplication: O(n²), where n is polynomial degree
+- Assuming average degree d, total complexity: O(1024 × d²)
 
-**b) FFT 算法複雜度（3分）**  
-使用 FFT 進行多項式乘法：
-- 每次乘法：O(d log d)
-- 總複雜度：O(1024 × d log d)
+**b) FFT Algorithm Complexity (3 points)**  
+Polynomial multiplication using FFT:
+- Each multiplication: O(d log d)
+- Total complexity: O(1024 × d log d)
 
-**c) 性能提升分析（3分）**
+**c) Performance Improvement Analysis (3 points)**
 ```
-當 d = 1024 時：
-樸素算法：O(1024 × 1024²) = O(2^30)
-FFT 算法：O(1024 × 1024 × log(1024)) = O(2^20 × 10) = O(2^23.3)
+When d = 1024:
+Naive algorithm: O(1024 × 1024²) = O(2^30)
+FFT algorithm: O(1024 × 1024 × log(1024)) = O(2^20 × 10) = O(2^23.3)
 
-性能提升：2^30 / 2^23.3 ≈ 100x
+Performance improvement: 2^30 / 2^23.3 ≈ 100x
 
-在 ZKP 中的意義：
-- 證明生成時間從小時級降到分鐘級
-- 使得大規模電路成為可能
-- 支持實時應用場景
-```
-
----
-
-## 第四部分：應用題解答
-
-### 11. 遞迴電路設計考慮（10分）
-
-**黃金域的優勢分析（6分）**
-
-1. **電路約束數量最少**
-   - 域運算在電路中實現成本最低
-   - 相比 BN254，約束數量減少 5-10x
-
-2. **FFT 性能最佳**
-   - 大規模多項式運算是遞迴證明的核心
-   - 10x FFT 性能提升直接轉化為證明生成加速
-
-3. **硬體資源利用率最高**
-   - 64位運算充分利用現代 CPU
-   - 記憶體需求最少，適合資源受限環境
-
-**性能優勢估算（4分）**
-
-```
-遞迴電路規模對比：
-- BN254 體：~2M 約束
-- 黃金域：~200K 約束
-- 減少：10x
-
-證明生成時間：
-- BN254 體：~10s
-- 黃金域：~1s  
-- 加速：10x
-
-記憶體使用：
-- BN254 體：~8GB
-- 黃金域：~2GB
-- 減少：4x
-
-綜合性能提升：
-遞迴驗證吞吐量提升 10x，
-記憶體效率提升 4x，
-使得在普通硬體上實現高效遞迴成為可能
+Significance in ZKP:
+- Proof generation time from hours to minutes
+- Makes large-scale circuits possible
+- Supports real-time application scenarios
 ```
 
 ---
 
-## 🎯 評分等級
+## Part 4: Application Solutions
 
-- **90-100分：** 優秀 - 深入理解黃金域的數學特性和工程價值
-- **80-89分：** 良好 - 很好掌握基本概念，能進行性能分析
-- **70-79分：** 及格 - 基本理解主要概念
-- **60-69分：** 不及格 - 需要重新學習有限體相關內容
-- **60分以下：** 不及格 - 建議重新完整學習本模組
+### 11. Recursive Circuit Design Considerations (10 points)
 
-## 📚 復習建議
+**Goldilocks Field Advantage Analysis (6 points)**
 
-如果分數不理想，建議重點復習：
-1. **黃金域的數學定義和特殊結構**
-2. **2-adicity 概念和對 FFT 的影響**
-3. **硬體友好性的具體體現和量化分析**
-4. **NTT 算法原理和性能優勢**
-5. **在遞迴證明中的應用價值和性能對比**
+1. **Minimum Circuit Constraint Count**
+   - Field operations have lowest implementation cost in circuits
+   - 5-10x fewer constraints compared to BN254
+
+2. **Best FFT Performance**
+   - Large-scale polynomial operations are core of recursive proofs
+   - 10x FFT performance improvement directly translates to proof generation acceleration
+
+3. **Highest Hardware Resource Utilization**
+   - 64-bit operations fully utilize modern CPUs
+   - Minimum memory requirements, suitable for resource-constrained environments
+
+**Performance Advantage Estimation (4 points)**
+
+```
+Recursive circuit scale comparison:
+- BN254 field: ~2M constraints
+- Goldilocks: ~200K constraints
+- Reduction: 10x
+
+Proof generation time:
+- BN254 field: ~10s
+- Goldilocks: ~1s  
+- Acceleration: 10x
+
+Memory usage:
+- BN254 field: ~8GB
+- Goldilocks: ~2GB
+- Reduction: 4x
+
+Overall performance improvement:
+Recursive verification throughput improved 10x,
+Memory efficiency improved 4x,
+Makes efficient recursion possible on ordinary hardware
+```
+
+---
+
+## 🎯 Grading Scale
+
+- **90-100 points:** Excellent - Deep understanding of Goldilocks field's mathematical properties and engineering value
+- **80-89 points:** Good - Good grasp of basic concepts with performance analysis capability
+- **70-79 points:** Pass - Basic understanding of main concepts
+- **60-69 points:** Fail - Need to re-learn finite field related content
+- **Below 60 points:** Fail - Recommend complete re-study of this module
+
+## 📚 Review Recommendations
+
+If scores are not ideal, focus on reviewing:
+1. **Mathematical definition and special structure of Goldilocks field**
+2. **2-adicity concept and its impact on FFT**
+3. **Specific manifestations and quantitative analysis of hardware-friendliness**
+4. **NTT algorithm principles and performance advantages**
+5. **Application value and performance comparison in recursive proofs**
